@@ -7,8 +7,8 @@ export const Route = createFileRoute("/c/$category/$pair")({
   head: ({ params }) => {
     const c = CATEGORY_MAP[params.category];
     const [from, to] = parsePair(params.pair);
-    const f = c?.units.find((u) => u.id === from);
-    const t = c?.units.find((u) => u.id === to);
+    const f = c?.units.find((u: Unit) => u.id === from);
+    const t = c?.units.find((u: Unit) => u.id === to);
     const title = f && t ? `${f.name} to ${t.name} — UnitPrecise` : "Converter";
     const desc = f && t ? `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}) instantly.` : "Unit converter";
     return {
@@ -25,8 +25,8 @@ export const Route = createFileRoute("/c/$category/$pair")({
     const c = CATEGORY_MAP[params.category];
     if (!c) throw notFound();
     const [from, to] = parsePair(params.pair);
-    const f = c.units.find((u) => u.id === from);
-    const t = c.units.find((u) => u.id === to);
+    const f = c.units.find((u: Unit) => u.id === from);
+    const t = c.units.find((u: Unit) => u.id === to);
     if (!f || !t) throw notFound();
     return { category: c, from: f.id, to: t.id };
   },
