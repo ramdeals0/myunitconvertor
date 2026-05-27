@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Converter } from "@/components/Converter";
 import { CATEGORY_MAP, CATEGORIES, convert, formatResult } from "@/lib/converters/data";
+import type { Category, Unit } from "@/lib/converters/types";
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/c/$category")({
@@ -49,9 +50,9 @@ function CategoryPage() {
         <section className="mt-12">
           <h2 className="text-xl font-semibold mb-4">Popular {category.name.toLowerCase()} conversions</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {category.popular.map((p) => {
-              const f = category.units.find((u) => u.id === p.from);
-              const t = category.units.find((u) => u.id === p.to);
+            {category.popular.map((p: { from: string; to: string }) => {
+              const f = category.units.find((u: Unit) => u.id === p.from);
+              const t = category.units.find((u: Unit) => u.id === p.to);
               return (
                 <Link key={`${p.from}-${p.to}`} to="/c/$category/$pair"
                   params={{ category: category.id, pair: `${p.from}-to-${p.to}` }}

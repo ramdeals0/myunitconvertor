@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Converter } from "@/components/Converter";
 import { CATEGORY_MAP, convert, formatResult } from "@/lib/converters/data";
+import type { Category, Unit } from "@/lib/converters/types";
 
 export const Route = createFileRoute("/c/$category/$pair")({
   head: ({ params }) => {
@@ -39,8 +40,8 @@ function parsePair(pair: string): [string, string] {
 
 function PairPage() {
   const { category, from, to } = Route.useLoaderData();
-  const f = category.units.find((u) => u.id === from)!;
-  const t = category.units.find((u) => u.id === to)!;
+  const f = category.units.find((u: Unit) => u.id === from)!;
+  const t = category.units.find((u: Unit) => u.id === to)!;
 
   const examples = [1, 2, 5, 10, 25, 50, 100, 250, 500, 1000];
 
