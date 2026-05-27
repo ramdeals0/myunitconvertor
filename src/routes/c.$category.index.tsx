@@ -78,7 +78,7 @@ function CategoryPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {category.units.map((u) => (
+              {category.units.map((u: Unit) => (
                 <tr key={u.id} className="hover:bg-muted/30">
                   <td className="p-3 font-medium">{u.name}</td>
                   <td className="p-3 text-muted-foreground">{u.symbol}</td>
