@@ -9,38 +9,75 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ConvertersRouteImport } from './routes/converters'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CCategoryIndexRouteImport } from './routes/c.$category.index'
+import { Route as CCategoryPairRouteImport } from './routes/c.$category.$pair'
 
+const ConvertersRoute = ConvertersRouteImport.update({
+  id: '/converters',
+  path: '/converters',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CCategoryIndexRoute = CCategoryIndexRouteImport.update({
+  id: '/c/$category/',
+  path: '/c/$category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CCategoryPairRoute = CCategoryPairRouteImport.update({
+  id: '/c/$category/$pair',
+  path: '/c/$category/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/converters': typeof ConvertersRoute
+  '/c/$category/$pair': typeof CCategoryPairRoute
+  '/c/$category/': typeof CCategoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/converters': typeof ConvertersRoute
+  '/c/$category/$pair': typeof CCategoryPairRoute
+  '/c/$category': typeof CCategoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/converters': typeof ConvertersRoute
+  '/c/$category/$pair': typeof CCategoryPairRoute
+  '/c/$category/': typeof CCategoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/converters' | '/c/$category/$pair' | '/c/$category/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/converters' | '/c/$category/$pair' | '/c/$category'
+  id: '__root__' | '/' | '/converters' | '/c/$category/$pair' | '/c/$category/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConvertersRoute: typeof ConvertersRoute
+  CCategoryPairRoute: typeof CCategoryPairRoute
+  CCategoryIndexRoute: typeof CCategoryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/converters': {
+      id: '/converters'
+      path: '/converters'
+      fullPath: '/converters'
+      preLoaderRoute: typeof ConvertersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/c/$category/': {
+      id: '/c/$category/'
+      path: '/c/$category'
+      fullPath: '/c/$category/'
+      preLoaderRoute: typeof CCategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/c/$category/$pair': {
+      id: '/c/$category/$pair'
+      path: '/c/$category/$pair'
+      fullPath: '/c/$category/$pair'
+      preLoaderRoute: typeof CCategoryPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConvertersRoute: ConvertersRoute,
+  CCategoryPairRoute: CCategoryPairRoute,
+  CCategoryIndexRoute: CCategoryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
