@@ -87,9 +87,9 @@ export const Route = createFileRoute("/api/public/contact")({
                 "Authorization": `Bearer ${resendApiKey}`,
               },
               body: JSON.stringify({
-                from: "UnitPrecise Contact <onboarding@resend.dev>",
+                from: "My Unit Convertor Contact <onboarding@resend.dev>",
                 to: ["ramdeals0@gmail.com"],
-                subject: `[UnitPrecise Contact] ${cleanSubject}`,
+                subject: `[My Unit Convertor Contact] ${cleanSubject}`,
                 text: `Name: ${cleanName}\nEmail: ${cleanEmail}\nSubject: ${cleanSubject}\n\nMessage:\n${cleanMessage}`,
               }),
             });

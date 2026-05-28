@@ -4,14 +4,14 @@ import { Scale } from "lucide-react";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — UnitPrecise" },
-      { name: "description", content: "UnitPrecise Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
-      { property: "og:title", content: "Terms of Service — UnitPrecise" },
-      { property: "og:description", content: "UnitPrecise Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { title: "Terms of Service — My Unit Convertor" },
+      { name: "description", content: "My Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { property: "og:title", content: "Terms of Service — My Unit Convertor" },
+      { property: "og:description", content: "My Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/terms" },
-      { name: "twitter:title", content: "Terms of Service — UnitPrecise" },
-      { name: "twitter:description", content: "UnitPrecise Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { name: "twitter:title", content: "Terms of Service — My Unit Convertor" },
+      { name: "twitter:description", content: "My Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/terms" },
@@ -33,7 +33,7 @@ function TermsPage() {
             Terms of Service
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Please read these terms carefully before using UnitPrecise.
+            Please read these terms carefully before using My Unit Convertor.
           </p>
         </div>
       </section>
@@ -42,21 +42,21 @@ function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">1. Acceptance of Terms</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            By accessing or using UnitPrecise, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+            By accessing or using My Unit Convertor, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">2. Description of Service</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            UnitPrecise provides free online unit conversion tools. Our service allows you to convert between various units of measurement across multiple categories including length, weight, temperature, volume, area, speed, and more.
+            My Unit Convertor provides free online unit conversion tools. Our service allows you to convert between various units of measurement across multiple categories including length, weight, temperature, volume, area, speed, and more.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">3. Use of the Service</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            You may use UnitPrecise for personal, educational, and professional purposes. You agree not to:
+            You may use My Unit Convertor for personal, educational, and professional purposes. You agree not to:
           </p>
           <ul className="list-disc pl-5 space-y-1 text-sm md:text-base text-muted-foreground leading-relaxed">
             <li>Use the service for any illegal or unauthorized purpose.</li>
@@ -69,21 +69,21 @@ function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">4. Accuracy Disclaimer</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            While we strive for maximum accuracy, UnitPrecise is provided "as is" without warranties of any kind. Conversion factors are based on standard reference data, but we cannot guarantee that all conversions are 100% accurate in every context. For critical applications (medical, engineering, financial), please verify results with authoritative sources.
+            While we strive for maximum accuracy, My Unit Convertor is provided "as is" without warranties of any kind. Conversion factors are based on standard reference data, but we cannot guarantee that all conversions are 100% accurate in every context. For critical applications (medical, engineering, financial), please verify results with authoritative sources.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">5. Limitation of Liability</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            To the fullest extent permitted by law, UnitPrecise and its operators shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use the service.
+            To the fullest extent permitted by law, My Unit Convertor and its operators shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use the service.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">6. Intellectual Property</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            All content on UnitPrecise, including text, graphics, logos, and software, is the property of UnitPrecise or its licensors and is protected by copyright and other intellectual property laws.
+            All content on My Unit Convertor, including text, graphics, logos, and software, is the property of My Unit Convertor or its licensors and is protected by copyright and other intellectual property laws.
           </p>
         </section>
 
@@ -97,7 +97,7 @@ function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">8. Governing Law</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            These terms shall be governed by and construed in accordance with the laws applicable in the jurisdiction where UnitPrecise operates, without regard to conflict of law principles.
+            These terms shall be governed by and construed in accordance with the laws applicable in the jurisdiction where My Unit Convertor operates, without regard to conflict of law principles.
           </p>
         </section>
 

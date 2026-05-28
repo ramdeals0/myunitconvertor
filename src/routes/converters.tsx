@@ -8,9 +8,9 @@ import { Search } from "lucide-react";
 export const Route = createFileRoute("/converters")({
   head: () => ({
     meta: [
-      { title: "All Converters — UnitPrecise" },
+      { title: "All Converters — My Unit Convertor" },
       { name: "description", content: "Browse every unit converter category — common, engineering, electricity, fluids and more." },
-      { property: "og:title", content: "All Converters — UnitPrecise" },
+      { property: "og:title", content: "All Converters — My Unit Convertor" },
       { property: "og:description", content: "Browse every unit converter category." },
     ],
     links: [{ rel: "canonical", href: "/converters" }],
