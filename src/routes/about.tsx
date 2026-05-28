@@ -4,14 +4,14 @@ import { Info, Shield, Zap, Globe, Heart } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — UnitPrecise" },
-      { name: "description", content: "Learn about UnitPrecise, the professional unit converter built for accuracy. Meet our mission to provide fast, reliable conversions for engineers, students, and travelers." },
-      { property: "og:title", content: "About Us — UnitPrecise" },
-      { property: "og:description", content: "Learn about UnitPrecise, the professional unit converter built for accuracy." },
+      { title: "About Us — My Unit Convertor" },
+      { name: "description", content: "Learn about My Unit Convertor, the professional unit converter built for accuracy. Meet our mission to provide fast, reliable conversions for engineers, students, and travelers." },
+      { property: "og:title", content: "About Us — My Unit Convertor" },
+      { property: "og:description", content: "Learn about My Unit Convertor, the professional unit converter built for accuracy." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/about" },
-      { name: "twitter:title", content: "About Us — UnitPrecise" },
-      { name: "twitter:description", content: "Learn about UnitPrecise, the professional unit converter built for accuracy." },
+      { name: "twitter:title", content: "About Us — My Unit Convertor" },
+      { name: "twitter:description", content: "Learn about My Unit Convertor, the professional unit converter built for accuracy." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/about" },
@@ -31,10 +31,10 @@ function AboutPage() {
             About Us
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            About UnitPrecise
+            About My Unit Convertor
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Engineering-grade precision meets everyday simplicity. We built UnitPrecise to be the most reliable unit conversion tool on the web.
+            Engineering-grade precision meets everyday simplicity. We built My Unit Convertor to be the most reliable unit conversion tool on the web.
           </p>
         </div>
       </section>
@@ -47,10 +47,10 @@ function AboutPage() {
             <h2 className="text-xl font-semibold">Our Mission</h2>
           </div>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            UnitPrecise was created with a single goal: to make unit conversion effortless, accurate, and accessible to everyone. Whether you are an engineer working on complex calculations, a student learning the sciences, a traveler navigating foreign measurements, or a home cook experimenting with international recipes — we have got you covered.
+            My Unit Convertor was created with a single goal: to make unit conversion effortless, accurate, and accessible to everyone. Whether you are an engineer working on complex calculations, a student learning the sciences, a traveler navigating foreign measurements, or a home cook experimenting with international recipes — we have got you covered.
           </p>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            We believe that precision matters. A small rounding error can lead to big problems in engineering, medicine, and science. That is why every conversion on UnitPrecise is calculated with the highest degree of accuracy and cross-verified against standard reference data.
+            We believe that precision matters. A small rounding error can lead to big problems in engineering, medicine, and science. That is why every conversion on My Unit Convertor is calculated with the highest degree of accuracy and cross-verified against standard reference data.
           </p>
         </section>
 
