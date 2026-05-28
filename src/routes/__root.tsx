@@ -69,14 +69,40 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "UnitPrecise",
+          name: "My Unit Convertor",
           description: "Fast, precise unit conversion for length, weight, temperature, volume, and dozens more categories.",
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",
           offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "My Unit Convertor",
+          url: "https://myunitconvertor.lovable.app",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://myunitconvertor.lovable.app/converters?q={search_term_string}",
+            "query-input": "required name=search_term_string",
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "My Unit Convertor",
+          url: "https://myunitconvertor.lovable.app",
+          logo: "https://myunitconvertor.lovable.app/favicon.ico",
+          email: "ramdeals0@gmail.com",
+        }),
+      },
     ],
+
   }),
   shellComponent: RootShell,
   component: RootComponent,
