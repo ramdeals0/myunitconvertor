@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CATEGORIES } from "@/lib/converters/data";
+import { AdBanner } from "@/components/AdBanner";
 import { GROUP_LABELS, CategoryGroup } from "@/lib/converters/types";
 import { Search } from "lucide-react";
 
@@ -63,6 +64,8 @@ function AllConverters() {
           );
         })}
       </div>
+
+      <AdBanner className="mt-12" />
     </div>
   );
 }

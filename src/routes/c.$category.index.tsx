@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Converter } from "@/components/Converter";
+import { AdBanner } from "@/components/AdBanner";
 import { CATEGORY_MAP, CATEGORIES, convert, formatResult } from "@/lib/converters/data";
 import type { Category } from "@/lib/converters/types";
 import { ArrowRight } from "lucide-react";
@@ -100,6 +101,8 @@ function CategoryPage() {
           </div>
         </div>
       )}
+
+      <AdBanner className="mt-10" />
 
       {category.popular?.length ? (
         <section className="mt-12">

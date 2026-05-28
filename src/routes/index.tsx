@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Converter } from "@/components/Converter";
+import { AdBanner } from "@/components/AdBanner";
 import { CATEGORIES, CATEGORY_MAP } from "@/lib/converters/data";
 import { GROUP_LABELS } from "@/lib/converters/types";
 import { Search, ArrowRight, Ruler, Weight, Thermometer, Beaker, Square, Gauge, Zap, Clock, Wind, Compass, HardDrive, Fuel } from "lucide-react";
@@ -90,6 +91,8 @@ function HomePage() {
 
         <Converter category={category} />
       </section>
+
+      <AdBanner className="mb-12" />
 
       {/* Search */}
       <section className="mb-12">
