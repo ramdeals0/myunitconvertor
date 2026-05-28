@@ -89,7 +89,6 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col md:items-end gap-1">
           <div>© {new Date().getFullYear()} UnitPrecise. Engineered for accuracy.</div>
-          <div className="text-xs">Last Updated: June 12, 2024</div>
         </div>
       </div>
     </footer>
