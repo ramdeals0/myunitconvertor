@@ -99,6 +99,7 @@ function HomePage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search units, categories, or symbols…"
+            aria-label="Search unit converters"
             className="w-full bg-surface-elevated border border-border rounded-full pl-12 pr-4 py-3.5 outline-none focus:border-primary focus:shadow-[var(--shadow-glow)]"
           />
         </div>
