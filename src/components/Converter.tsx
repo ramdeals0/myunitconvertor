@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeftRight, Copy, Check, ChevronsUpDown, Share2, Link2 } from "lucide-react";
+import { ArrowLeftRight, Copy, Check, ChevronsUpDown, Link2 } from "lucide-react";
 import { Category } from "@/lib/converters/types";
 import { convert, formatResult } from "@/lib/converters/data";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
