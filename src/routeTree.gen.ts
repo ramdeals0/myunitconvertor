@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ConvertersRouteImport } from './routes/converters'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CCategoryRouteImport } from './routes/c.$category'
 import { Route as CCategoryIndexRouteImport } from './routes/c.$category.index'
 import { Route as CCategoryPairRouteImport } from './routes/c.$category.$pair'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConvertersRoute = ConvertersRouteImport.update({
   id: '/converters',
   path: '/converters',
@@ -44,6 +50,7 @@ const CCategoryPairRoute = CCategoryPairRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/converters': typeof ConvertersRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/c/$category': typeof CCategoryRouteWithChildren
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category/': typeof CCategoryIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/converters': typeof ConvertersRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category': typeof CCategoryIndexRoute
 }
@@ -58,6 +66,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/converters': typeof ConvertersRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/c/$category': typeof CCategoryRouteWithChildren
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category/': typeof CCategoryIndexRoute
@@ -67,15 +76,22 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/converters'
+    | '/sitemap.xml'
     | '/c/$category'
     | '/c/$category/$pair'
     | '/c/$category/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/converters' | '/c/$category/$pair' | '/c/$category'
+  to:
+    | '/'
+    | '/converters'
+    | '/sitemap.xml'
+    | '/c/$category/$pair'
+    | '/c/$category'
   id:
     | '__root__'
     | '/'
     | '/converters'
+    | '/sitemap.xml'
     | '/c/$category'
     | '/c/$category/$pair'
     | '/c/$category/'
@@ -84,11 +100,19 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConvertersRoute: typeof ConvertersRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CCategoryRoute: typeof CCategoryRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/converters': {
       id: '/converters'
       path: '/converters'
@@ -144,6 +168,7 @@ const CCategoryRouteWithChildren = CCategoryRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConvertersRoute: ConvertersRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   CCategoryRoute: CCategoryRouteWithChildren,
 }
 export const routeTree = rootRouteImport
