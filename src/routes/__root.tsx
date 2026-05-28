@@ -135,6 +135,9 @@ function RootComponent() {
           <main className="flex-1">
             <Outlet />
           </main>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 w-full">
+            <AdBanner className="mt-10" />
+          </div>
           <SiteFooter />
         </div>
         <ScientificCalculator />
