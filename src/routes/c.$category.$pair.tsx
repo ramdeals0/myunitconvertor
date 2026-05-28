@@ -20,6 +20,12 @@ export const Route = createFileRoute("/c/$category/$pair")({
     const factor = c && f && t ? convert(c, 1, f.id, t.id) : null;
     const scripts: Array<{ type: string; children: string }> = [];
     if (c && f && t && factor !== null) {
+      const faqs = [
+        { q: `How do I convert ${f.name.toLowerCase()} to ${t.name.toLowerCase()}?`, a: `Multiply the ${f.name.toLowerCase()} value by ${formatResult(factor)} to get the result in ${t.name.toLowerCase()}.` },
+        { q: `What is 1 ${f.name.toLowerCase()} in ${t.name.toLowerCase()}?`, a: `1 ${f.symbol} equals ${formatResult(factor)} ${t.symbol}.` },
+        { q: "How precise is this tool?", a: "We use 12-digit precision constants aligned with international metrology standards." },
+        { q: "Is it free to use?", a: "Yes — the web converter is completely free for personal and professional use." },
+      ];
       scripts.push({
         type: "application/ld+json",
         children: JSON.stringify({
@@ -44,6 +50,18 @@ export const Route = createFileRoute("/c/$category/$pair")({
             { "@type": "ListItem", position: 2, name: c.name, item: catUrl },
             { "@type": "ListItem", position: 3, name: `${f.name} to ${t.name}`, item: url },
           ],
+        }),
+      });
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((q) => ({
+            "@type": "Question",
+            name: q.q,
+            acceptedAnswer: { "@type": "Answer", text: q.a },
+          })),
         }),
       });
     }
