@@ -58,6 +58,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          name: "UnitPrecise",
+          description: "Fast, precise unit conversion for length, weight, temperature, volume, and dozens more categories.",
+          applicationCategory: "UtilitiesApplication",
+          operatingSystem: "Any",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

@@ -8,15 +8,41 @@ export const Route = createFileRoute("/c/$category/")({
   head: ({ params }) => {
     const c = CATEGORY_MAP[params.category];
     const title = c ? `${c.name} Converter — UnitPrecise` : "Converter";
-    const desc = c?.description ?? "Unit converter";
+    const baseDesc = c?.description ?? "Unit converter";
+    const desc = c
+      ? `${c.name} converter with ${c.units.length} units. ${baseDesc} Fast, accurate, engineering-grade precision for everyday and professional use.`
+      : "Unit converter with engineering-grade precision for everyday and professional use across dozens of categories.";
+    const faqs = c
+      ? [
+          { q: "How precise is this tool?", a: "We use 12-digit precision constants aligned with international metrology standards." },
+          { q: `Which ${c.name.toLowerCase()} units are supported?`, a: `${c.units.length} units across SI, US Customary, and Imperial systems where applicable.` },
+          { q: "Is it free for API use?", a: "The web tool is free. For programmatic or high-volume usage, contact us about API access." },
+        ]
+      : [];
     return {
       meta: [
         { title },
-        { name: "description", content: desc },
+        { name: "description", content: desc.slice(0, 160) },
         { property: "og:title", content: title },
-        { property: "og:description", content: desc },
+        { property: "og:description", content: desc.slice(0, 160) },
       ],
       links: [{ rel: "canonical", href: `/c/${params.category}` }],
+      scripts: faqs.length
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              }),
+            },
+          ]
+        : [],
     };
   },
   loader: ({ params }) => {
@@ -49,6 +75,15 @@ function CategoryPage() {
         <span className="mx-2">/</span>
         <span className="text-foreground">{category.name}</span>
       </nav>
+
+      <header className="text-center mb-6">
+        <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+          {category.name} Converter
+        </h1>
+        <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+          {category.description}
+        </p>
+      </header>
 
       <Converter category={category} />
 

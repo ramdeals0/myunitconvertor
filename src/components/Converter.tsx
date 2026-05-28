@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { ArrowLeftRight, Copy, Check, ChevronsUpDown, Link2 } from "lucide-react";
 import { Category } from "@/lib/converters/types";
 import { convert, formatResult } from "@/lib/converters/data";
@@ -144,19 +144,25 @@ function UnitField({
   readOnly?: boolean;
   trailing?: React.ReactNode;
 }) {
+  const inputId = useId();
   return (
     <div className="space-y-2">
-      <label className="text-[11px] tracking-[0.08em] font-semibold uppercase text-muted-foreground">
+      <label
+        htmlFor={inputId}
+        className="text-[11px] tracking-[0.08em] font-semibold uppercase text-muted-foreground"
+      >
         {label}
       </label>
       <div className="relative">
         <input
+          id={inputId}
           type="text"
           inputMode="decimal"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           readOnly={readOnly}
           placeholder="0"
+          aria-label={`${label} value in ${unit}`}
           className={`w-full bg-surface-elevated border border-border rounded-xl pl-4 pr-44 py-4 text-2xl font-mono-num font-medium outline-none transition-all
             ${readOnly ? "text-muted-foreground bg-muted/40" : "focus:border-primary focus:shadow-[var(--shadow-glow)]"}`}
         />
