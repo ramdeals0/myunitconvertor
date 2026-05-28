@@ -36,7 +36,7 @@ const length: Category = {
 const weight: Category = {
   id: "weight",
   name: "Weight & Mass",
-  description: "Kilograms, pounds, ounces, tonnes and more.",
+  description: "Kilograms, pounds, ounces, tonnes and more. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "kg",
   units: [
@@ -75,7 +75,7 @@ weight.units = [
 const temperature: Category = {
   id: "temperature",
   name: "Temperature",
-  description: "Celsius, Fahrenheit, Kelvin and Rankine.",
+  description: "Celsius, Fahrenheit, Kelvin and Rankine. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "c",
   units: [
@@ -94,7 +94,7 @@ const temperature: Category = {
 const volume: Category = {
   id: "volume",
   name: "Volume",
-  description: "Liters, gallons, cups, milliliters and more.",
+  description: "Liters, gallons, cups, milliliters and more. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "L",
   units: [
@@ -122,7 +122,7 @@ const volume: Category = {
 const area: Category = {
   id: "area",
   name: "Area",
-  description: "Square meters, acres, hectares, square feet.",
+  description: "Square meters, acres, hectares, square feet. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "m2",
   units: [
@@ -143,7 +143,7 @@ const area: Category = {
 const pressure: Category = {
   id: "pressure",
   name: "Pressure",
-  description: "Pascals, bars, PSI, atmospheres.",
+  description: "Pascals, bars, PSI, atmospheres. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "Pa",
   units: [
@@ -163,7 +163,7 @@ const pressure: Category = {
 const energy: Category = {
   id: "energy",
   name: "Energy",
-  description: "Joules, calories, kilowatt-hours, BTU.",
+  description: "Joules, calories, kilowatt-hours, BTU. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "J",
   units: [
@@ -183,7 +183,7 @@ const energy: Category = {
 const power: Category = {
   id: "power",
   name: "Power",
-  description: "Watts, horsepower, kilowatts.",
+  description: "Watts, horsepower, kilowatts. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "W",
   units: [
@@ -202,7 +202,7 @@ const power: Category = {
 const force: Category = {
   id: "force",
   name: "Force",
-  description: "Newtons, pounds-force, dynes.",
+  description: "Newtons, pounds-force, dynes. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "N",
   units: [
@@ -218,7 +218,7 @@ const force: Category = {
 const time: Category = {
   id: "time",
   name: "Time",
-  description: "Seconds, minutes, hours, days, years.",
+  description: "Seconds, minutes, hours, days, years. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "s",
   units: [
@@ -238,7 +238,7 @@ const time: Category = {
 const speed: Category = {
   id: "speed",
   name: "Speed",
-  description: "m/s, km/h, mph, knots.",
+  description: "m/s, km/h, mph, knots. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "mps",
   units: [
@@ -256,7 +256,7 @@ const speed: Category = {
 const angle: Category = {
   id: "angle",
   name: "Angle",
-  description: "Degrees, radians, gradians.",
+  description: "Degrees, radians, gradians. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "rad",
   units: [
@@ -274,7 +274,7 @@ const angle: Category = {
 const data: Category = {
   id: "data",
   name: "Data Storage",
-  description: "Bytes, kilobytes, megabytes, gigabytes.",
+  description: "Bytes, kilobytes, megabytes, gigabytes. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "B",
   units: [
@@ -296,7 +296,7 @@ const data: Category = {
 const fuel: Category = {
   id: "fuel",
   name: "Fuel Consumption",
-  description: "L/100km, MPG (US), MPG (UK), km/L.",
+  description: "L/100km, MPG (US), MPG (UK), km/L. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "common",
   baseUnit: "lp100km",
   units: [
@@ -311,7 +311,7 @@ const fuel: Category = {
 const frequency: Category = {
   id: "frequency",
   name: "Frequency",
-  description: "Hertz, kilohertz, megahertz, gigahertz.",
+  description: "Hertz, kilohertz, megahertz, gigahertz. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "light",
   baseUnit: "Hz",
   units: [
@@ -328,7 +328,7 @@ const frequency: Category = {
 const density: Category = {
   id: "density",
   name: "Density",
-  description: "Kilogram/m³, g/cm³, lb/ft³.",
+  description: "Kilogram/m³, g/cm³, lb/ft³. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "engineering",
   baseUnit: "kgm3",
   units: [
@@ -344,7 +344,7 @@ const density: Category = {
 const acceleration: Category = {
   id: "acceleration",
   name: "Acceleration",
-  description: "m/s², g-force, ft/s².",
+  description: "m/s², g-force, ft/s². Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "engineering",
   baseUnit: "mps2",
   units: [
@@ -359,7 +359,7 @@ const acceleration: Category = {
 const torque: Category = {
   id: "torque",
   name: "Torque",
-  description: "Newton-meters, foot-pounds.",
+  description: "Newton-meters, foot-pounds. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "engineering",
   baseUnit: "Nm",
   units: [
@@ -375,7 +375,7 @@ const torque: Category = {
 const current: Category = {
   id: "current",
   name: "Electric Current",
-  description: "Amperes, milliamperes.",
+  description: "Amperes, milliamperes. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "electricity",
   baseUnit: "A",
   units: [
@@ -390,7 +390,7 @@ const current: Category = {
 const voltage: Category = {
   id: "voltage",
   name: "Electric Potential",
-  description: "Volts, millivolts, kilovolts.",
+  description: "Volts, millivolts, kilovolts. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "electricity",
   baseUnit: "V",
   units: [
@@ -405,7 +405,7 @@ const voltage: Category = {
 const resistance: Category = {
   id: "resistance",
   name: "Electric Resistance",
-  description: "Ohms, kiloohms, megaohms.",
+  description: "Ohms, kiloohms, megaohms. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "electricity",
   baseUnit: "ohm",
   units: [
@@ -420,7 +420,7 @@ const resistance: Category = {
 const flow: Category = {
   id: "flow",
   name: "Flow Rate",
-  description: "Cubic meters/sec, liters/min, gallons/min.",
+  description: "Cubic meters/sec, liters/min, gallons/min. Fast, accurate conversions with engineering-grade precision for everyday and professional use.",
   group: "fluids",
   baseUnit: "m3s",
   units: [
