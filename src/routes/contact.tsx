@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MessageSquare } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -21,21 +22,17 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
       <section className="bg-surface-elevated border-b border-border">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20 text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft text-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider mb-5">
             <MessageSquare className="h-3.5 w-3.5" />
-            Get in Touch
+            {t("contact.badge")}
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            Contact Unit Convertor
-          </h1>
-          <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-            Have a question, suggestion, or found an issue? We would love to hear from you.
-          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">{t("contact.h1")}</h1>
+          <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl mx-auto">{t("contact.lead")}</p>
         </div>
       </section>
 
@@ -45,10 +42,8 @@ function ContactPage() {
             <Mail className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-foreground mb-2">Email Us</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              We read every email and typically reply within 24–48 hours.
-            </p>
+            <h2 className="text-xl font-semibold text-foreground mb-2">{t("contact.email.title")}</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t("contact.email.text")}</p>
           </div>
           <a
             href="mailto:ramdeals0@gmail.com"
