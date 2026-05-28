@@ -53,12 +53,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Unit Convertor — All-in-One Unit Conversion Calculator" },
+      { title: "Turbo Unit Converter — All-in-One Unit Conversion Calculator" },
       { name: "description", content: "MyUnitConvertor.com: Fast, accurate online unit converter for 75+ categories. Convert length, weight, temperature, currency & more instantly. Free, no signup." },
-      { property: "og:title", content: "Unit Convertor — All-in-One Unit Conversion Calculator" },
+      { property: "og:title", content: "Turbo Unit Converter — All-in-One Unit Conversion Calculator" },
       { property: "og:description", content: "MyUnitConvertor.com: Fast, accurate online unit converter for 75+ categories. Convert length, weight, temperature, currency & more instantly. Free, no signup." },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "Unit Convertor — All-in-One Unit Conversion Calculator" },
+      { name: "twitter:title", content: "Turbo Unit Converter — All-in-One Unit Conversion Calculator" },
       { name: "twitter:description", content: "MyUnitConvertor.com: Fast, accurate online unit converter for 75+ categories. Convert length, weight, temperature, currency & more instantly. Free, no signup." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/58eb67bc-fad4-418c-8095-ffe652183be5" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/58eb67bc-fad4-418c-8095-ffe652183be5" },
@@ -71,7 +71,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "Unit Convertor",
+          name: "Turbo Unit Converter",
           description: "Fast, precise unit conversion for length, weight, temperature, volume, and dozens more categories.",
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any",
@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "Unit Convertor",
+          name: "Turbo Unit Converter",
           url: "https://myunitconvertor.lovable.app",
           potentialAction: {
             "@type": "SearchAction",
@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Unit Convertor",
+          name: "Turbo Unit Converter",
           url: "https://myunitconvertor.lovable.app",
           logo: "https://myunitconvertor.lovable.app/favicon.ico",
           email: "ramdeals0@gmail.com",

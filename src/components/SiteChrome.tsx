@@ -48,7 +48,7 @@ export function SiteHeader() {
     <header className="bg-surface-elevated/80 backdrop-blur-md border-b border-border fixed top-0 inset-x-0 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-4 md:px-6">
         <Link to="/" className="text-xl font-bold tracking-tight text-primary">
-          Unit Convertor
+          Turbo Unit Converter
         </Link>
         <nav className="hidden md:flex items-center gap-7">
           {NAV.map((item) => {
@@ -127,7 +127,7 @@ export function SiteFooter() {
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div>
-            <span className="font-semibold text-foreground">Unit Convertor</span> — {t("footer.tagline")}
+            <span className="font-semibold text-foreground">Turbo Unit Converter</span> — {t("footer.tagline")}
           </div>
           <div className="flex items-center gap-4">
             <Link to="/about" className="hover:text-foreground transition-colors">{t("footer.about")}</Link>
@@ -140,7 +140,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-4 text-center md:text-right text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Unit Convertor. {t("footer.rights")}
+          © {new Date().getFullYear()} Turbo Unit Converter. {t("footer.rights")}
         </div>
       </div>
     </footer>

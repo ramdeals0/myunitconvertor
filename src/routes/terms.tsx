@@ -5,14 +5,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — Unit Convertor" },
-      { name: "description", content: "Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
-      { property: "og:title", content: "Terms of Service — Unit Convertor" },
-      { property: "og:description", content: "Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { title: "Terms of Service — Turbo Unit Converter" },
+      { name: "description", content: "Turbo Unit Converter Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { property: "og:title", content: "Terms of Service — Turbo Unit Converter" },
+      { property: "og:description", content: "Turbo Unit Converter Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/terms" },
-      { name: "twitter:title", content: "Terms of Service — Unit Convertor" },
-      { name: "twitter:description", content: "Unit Convertor Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
+      { name: "twitter:title", content: "Terms of Service — Turbo Unit Converter" },
+      { name: "twitter:description", content: "Turbo Unit Converter Terms of Service. Read the terms and conditions governing your use of our free unit conversion tools." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/terms" },

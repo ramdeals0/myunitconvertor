@@ -15,9 +15,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Unit Convertor — Professional Unit Converter & Engineering Tools" },
+      { title: "Turbo Unit Converter — Professional Unit Converter & Engineering Tools" },
       { name: "description", content: "Convert length, weight, temperature, volume, and dozens more — instantly and accurately, with engineering-grade precision." },
-      { property: "og:title", content: "Unit Convertor — Professional Unit Converter & Engineering Tools" },
+      { property: "og:title", content: "Turbo Unit Converter — Professional Unit Converter & Engineering Tools" },
       { property: "og:description", content: "A clean, fast, modern unit converter for every category you need." },
     ],
     links: [{ rel: "canonical", href: "/" }],

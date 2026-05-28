@@ -5,14 +5,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — Unit Convertor" },
-      { name: "description", content: "Learn about Unit Convertor, the professional unit converter built for accuracy. Meet our mission to provide fast, reliable conversions for engineers, students, and travelers." },
-      { property: "og:title", content: "About Us — Unit Convertor" },
-      { property: "og:description", content: "Learn about Unit Convertor, the professional unit converter built for accuracy." },
+      { title: "About Us — Turbo Unit Converter" },
+      { name: "description", content: "Learn about Turbo Unit Converter, the professional unit converter built for accuracy. Meet our mission to provide fast, reliable conversions for engineers, students, and travelers." },
+      { property: "og:title", content: "About Us — Turbo Unit Converter" },
+      { property: "og:description", content: "Learn about Turbo Unit Converter, the professional unit converter built for accuracy." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/about" },
-      { name: "twitter:title", content: "About Us — Unit Convertor" },
-      { name: "twitter:description", content: "Learn about Unit Convertor, the professional unit converter built for accuracy." },
+      { name: "twitter:title", content: "About Us — Turbo Unit Converter" },
+      { name: "twitter:description", content: "Learn about Turbo Unit Converter, the professional unit converter built for accuracy." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/about" },
