@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { ArrowLeftRight, Copy, Check, ChevronsUpDown, Link2 } from "lucide-react";
 import { Category } from "@/lib/converters/types";
 import { convert, formatResult } from "@/lib/converters/data";
