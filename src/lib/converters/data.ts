@@ -432,10 +432,665 @@ const flow: Category = {
   ],
 };
 
+// ===== Engineering =====
+const velocityAngular: Category = {
+  id: "velocity-angular", name: "Angular Velocity", description: "rad/s, deg/s, rpm and more.",
+  group: "engineering", baseUnit: "radps",
+  units: [
+    u("radps", "Radian/second", "rad/s", 1),
+    u("degps", "Degree/second", "°/s", Math.PI / 180),
+    u("revps", "Revolution/second", "rev/s", 2 * Math.PI),
+    u("rpm", "Revolution/minute", "rpm", Math.PI / 30),
+    u("revph", "Revolution/hour", "rev/h", Math.PI / 1800),
+  ],
+};
+
+const accelerationAngular: Category = {
+  id: "acceleration-angular", name: "Angular Acceleration", description: "rad/s², deg/s², rev/s².",
+  group: "engineering", baseUnit: "radps2",
+  units: [
+    u("radps2", "Radian/second²", "rad/s²", 1),
+    u("degps2", "Degree/second²", "°/s²", Math.PI / 180),
+    u("revps2", "Revolution/second²", "rev/s²", 2 * Math.PI),
+    u("revpm2", "Revolution/minute²", "rev/min²", (2 * Math.PI) / 3600),
+  ],
+};
+
+const specificVolume: Category = {
+  id: "specific-volume", name: "Specific Volume", description: "m³/kg, cm³/g, ft³/lb.",
+  group: "engineering", baseUnit: "m3kg",
+  units: [
+    u("m3kg", "Cubic meter/kilogram", "m³/kg", 1),
+    u("cm3g", "Cubic centimeter/gram", "cm³/g", 0.001),
+    u("Lkg", "Liter/kilogram", "L/kg", 0.001),
+    u("ft3lb", "Cubic foot/pound", "ft³/lb", 0.06242796),
+  ],
+};
+
+const momentOfInertia: Category = {
+  id: "moment-of-inertia", name: "Moment of Inertia", description: "kg·m², lb·ft², lb·in².",
+  group: "engineering", baseUnit: "kgm2",
+  units: [
+    u("kgm2", "Kilogram·meter²", "kg·m²", 1),
+    u("gcm2", "Gram·centimeter²", "g·cm²", 1e-7),
+    u("lbft2", "Pound·foot²", "lb·ft²", 0.04214011),
+    u("lbin2", "Pound·inch²", "lb·in²", 0.000292639),
+    u("slugft2", "Slug·foot²", "slug·ft²", 1.355817948),
+  ],
+};
+
+const momentOfForce: Category = {
+  id: "moment-of-force", name: "Moment of Force", description: "Newton-meter, kgf·m, lbf·ft.",
+  group: "engineering", baseUnit: "Nm",
+  units: [
+    u("Nm", "Newton-meter", "N·m", 1),
+    u("kNm", "Kilonewton-meter", "kN·m", 1000),
+    u("mNm", "Millinewton-meter", "mN·m", 0.001),
+    u("kgfm", "Kilogram-force meter", "kgf·m", 9.80665),
+    u("lbfft", "Pound-force foot", "lbf·ft", 1.355817948),
+    u("lbfin", "Pound-force inch", "lbf·in", 0.112984829),
+  ],
+};
+
+// ===== Heat =====
+const fuelEffMass: Category = {
+  id: "fuel-efficiency-mass", name: "Fuel Efficiency (Mass)", description: "J/kg, kJ/kg, BTU/lb.",
+  group: "heat", baseUnit: "Jkg",
+  units: [
+    u("Jkg", "Joule/kilogram", "J/kg", 1),
+    u("kJkg", "Kilojoule/kilogram", "kJ/kg", 1000),
+    u("calg", "Calorie/gram", "cal/g", 4184),
+    u("kcalkg", "Kilocalorie/kilogram", "kcal/kg", 4184),
+    u("BTUlb", "BTU/pound", "BTU/lb", 2326),
+  ],
+};
+
+const fuelEffVolume: Category = {
+  id: "fuel-efficiency-volume", name: "Fuel Efficiency (Volume)", description: "J/m³, kJ/m³, BTU/ft³.",
+  group: "heat", baseUnit: "Jm3",
+  units: [
+    u("Jm3", "Joule/cubic meter", "J/m³", 1),
+    u("kJm3", "Kilojoule/cubic meter", "kJ/m³", 1000),
+    u("calcm3", "Calorie/cubic centimeter", "cal/cm³", 4.184e6),
+    u("BTUft3", "BTU/cubic foot", "BTU/ft³", 37258.9458),
+    u("thermgal", "Therm/US gallon", "therm/gal", 2.787163e10),
+  ],
+};
+
+const tempInterval: Category = {
+  id: "temperature-interval", name: "Temperature Interval", description: "Kelvin, Celsius, Fahrenheit intervals.",
+  group: "heat", baseUnit: "K",
+  units: [
+    u("K", "Kelvin", "K", 1),
+    u("C", "Celsius", "°C", 1),
+    u("F", "Fahrenheit", "°F", 5 / 9),
+    u("R", "Rankine", "°R", 5 / 9),
+  ],
+};
+
+const thermalExpansion: Category = {
+  id: "thermal-expansion", name: "Thermal Expansion", description: "Coefficient of linear expansion.",
+  group: "heat", baseUnit: "perK",
+  units: [
+    u("perK", "1/Kelvin", "1/K", 1),
+    u("perC", "1/Celsius", "1/°C", 1),
+    u("perF", "1/Fahrenheit", "1/°F", 1.8),
+    u("perR", "1/Rankine", "1/°R", 1.8),
+  ],
+};
+
+const thermalResistance: Category = {
+  id: "thermal-resistance", name: "Thermal Resistance", description: "K/W, °F·h/BTU.",
+  group: "heat", baseUnit: "KW",
+  units: [
+    u("KW", "Kelvin/Watt", "K/W", 1),
+    u("FhBTU", "°F·h/BTU", "°F·h/BTU", 1.895634),
+  ],
+};
+
+const thermalConductivity: Category = {
+  id: "thermal-conductivity", name: "Thermal Conductivity", description: "W/(m·K), BTU/(h·ft·°F).",
+  group: "heat", baseUnit: "WmK",
+  units: [
+    u("WmK", "Watt/(m·K)", "W/(m·K)", 1),
+    u("calscm", "cal/(s·cm·°C)", "cal/(s·cm·°C)", 418.4),
+    u("BTUhft", "BTU/(h·ft·°F)", "BTU/(h·ft·°F)", 1.730735),
+    u("BTUinft2", "BTU·in/(h·ft²·°F)", "BTU·in/(h·ft²·°F)", 0.144228),
+  ],
+};
+
+const specificHeat: Category = {
+  id: "specific-heat-capacity", name: "Specific Heat Capacity", description: "J/(kg·K), BTU/(lb·°F).",
+  group: "heat", baseUnit: "JkgK",
+  units: [
+    u("JkgK", "Joule/(kg·K)", "J/(kg·K)", 1),
+    u("kJkgK", "Kilojoule/(kg·K)", "kJ/(kg·K)", 1000),
+    u("calgC", "Calorie/(g·°C)", "cal/(g·°C)", 4184),
+    u("BTUlbF", "BTU/(lb·°F)", "BTU/(lb·°F)", 4186.8),
+  ],
+};
+
+const heatDensity: Category = {
+  id: "heat-density", name: "Heat Density", description: "J/m², BTU/ft².",
+  group: "heat", baseUnit: "Jm2",
+  units: [
+    u("Jm2", "Joule/m²", "J/m²", 1),
+    u("kJm2", "Kilojoule/m²", "kJ/m²", 1000),
+    u("calcm2", "Calorie/cm²", "cal/cm²", 41840),
+    u("BTUft2", "BTU/ft²", "BTU/ft²", 11356.5267),
+  ],
+};
+
+const heatFluxDensity: Category = {
+  id: "heat-flux-density", name: "Heat Flux Density", description: "W/m², BTU/(h·ft²).",
+  group: "heat", baseUnit: "Wm2",
+  units: [
+    u("Wm2", "Watt/m²", "W/m²", 1),
+    u("kWm2", "Kilowatt/m²", "kW/m²", 1000),
+    u("calscm2", "cal/(s·cm²)", "cal/(s·cm²)", 41840),
+    u("BTUhft2", "BTU/(h·ft²)", "BTU/(h·ft²)", 3.15459),
+  ],
+};
+
+const heatTransferCoef: Category = {
+  id: "heat-transfer-coefficient", name: "Heat Transfer Coefficient", description: "W/(m²·K), BTU/(h·ft²·°F).",
+  group: "heat", baseUnit: "Wm2K",
+  units: [
+    u("Wm2K", "Watt/(m²·K)", "W/(m²·K)", 1),
+    u("calscm2C", "cal/(s·cm²·°C)", "cal/(s·cm²·°C)", 41868),
+    u("BTUhft2F", "BTU/(h·ft²·°F)", "BTU/(h·ft²·°F)", 5.678263),
+  ],
+};
+
+// ===== Fluids =====
+const flowMass: Category = {
+  id: "flow-mass", name: "Mass Flow", description: "kg/s, kg/h, lb/h, ton/h.",
+  group: "fluids", baseUnit: "kgs",
+  units: [
+    u("kgs", "Kilogram/second", "kg/s", 1),
+    u("kgmin", "Kilogram/minute", "kg/min", 1 / 60),
+    u("kgh", "Kilogram/hour", "kg/h", 1 / 3600),
+    u("gs", "Gram/second", "g/s", 0.001),
+    u("lbs", "Pound/second", "lb/s", 0.45359237),
+    u("lbh", "Pound/hour", "lb/h", 0.45359237 / 3600),
+    u("tonh", "Ton/hour (metric)", "t/h", 1000 / 3600),
+  ],
+};
+
+const flowMolar: Category = {
+  id: "flow-molar", name: "Molar Flow", description: "mol/s, mmol/s, kmol/h.",
+  group: "fluids", baseUnit: "mols",
+  units: [
+    u("mols", "Mole/second", "mol/s", 1),
+    u("mmols", "Millimole/second", "mmol/s", 0.001),
+    u("kmols", "Kilomole/second", "kmol/s", 1000),
+    u("molmin", "Mole/minute", "mol/min", 1 / 60),
+    u("molh", "Mole/hour", "mol/h", 1 / 3600),
+  ],
+};
+
+const massFluxDensity: Category = {
+  id: "mass-flux-density", name: "Mass Flux Density", description: "kg/(m²·s), lb/(ft²·s).",
+  group: "fluids", baseUnit: "kgm2s",
+  units: [
+    u("kgm2s", "Kilogram/(m²·s)", "kg/(m²·s)", 1),
+    u("gcm2s", "Gram/(cm²·s)", "g/(cm²·s)", 10),
+    u("lbft2s", "Pound/(ft²·s)", "lb/(ft²·s)", 4.882428),
+  ],
+};
+
+const concentrationMolar: Category = {
+  id: "concentration-molar", name: "Molar Concentration", description: "mol/m³, mol/L, mmol/L.",
+  group: "fluids", baseUnit: "molm3",
+  units: [
+    u("molm3", "Mole/m³", "mol/m³", 1),
+    u("molL", "Mole/liter", "mol/L", 1000),
+    u("mmolL", "Millimole/liter", "mmol/L", 1),
+    u("molcm3", "Mole/cm³", "mol/cm³", 1e6),
+  ],
+};
+
+const concentrationSolution: Category = {
+  id: "concentration-solution", name: "Solution Concentration", description: "kg/m³, g/L, mg/L.",
+  group: "fluids", baseUnit: "kgm3",
+  units: [
+    u("kgm3", "Kilogram/m³", "kg/m³", 1),
+    u("gL", "Gram/liter", "g/L", 1),
+    u("mgL", "Milligram/liter", "mg/L", 0.001),
+    u("ppm", "Parts per million", "ppm", 0.001),
+    u("ozgal_us", "Ounce/gallon (US)", "oz/gal", 7.489152),
+  ],
+};
+
+const viscosityDynamic: Category = {
+  id: "viscosity-dynamic", name: "Dynamic Viscosity", description: "Pa·s, poise, centipoise.",
+  group: "fluids", baseUnit: "Pas",
+  units: [
+    u("Pas", "Pascal·second", "Pa·s", 1),
+    u("mPas", "Millipascal·second", "mPa·s", 0.001),
+    u("P", "Poise", "P", 0.1),
+    u("cP", "Centipoise", "cP", 0.001),
+    u("lbfft2s", "lbf·s/ft²", "lbf·s/ft²", 47.880259),
+  ],
+};
+
+const viscosityKinematic: Category = {
+  id: "viscosity-kinematic", name: "Kinematic Viscosity", description: "m²/s, stokes, centistokes.",
+  group: "fluids", baseUnit: "m2s",
+  units: [
+    u("m2s", "Square meter/second", "m²/s", 1),
+    u("mm2s", "Square millimeter/second", "mm²/s", 1e-6),
+    u("St", "Stokes", "St", 1e-4),
+    u("cSt", "Centistokes", "cSt", 1e-6),
+    u("ft2s", "Square foot/second", "ft²/s", 0.092903),
+  ],
+};
+
+const surfaceTension: Category = {
+  id: "surface-tension", name: "Surface Tension", description: "N/m, dyn/cm, lbf/in.",
+  group: "fluids", baseUnit: "Nm",
+  units: [
+    u("Nm", "Newton/meter", "N/m", 1),
+    u("mNm", "Millinewton/meter", "mN/m", 0.001),
+    u("dyncm", "Dyne/centimeter", "dyn/cm", 0.001),
+    u("lbfin", "Pound-force/inch", "lbf/in", 175.126837),
+  ],
+};
+
+const permeability: Category = {
+  id: "permeability", name: "Permeability", description: "kg/(Pa·s·m²) and related units.",
+  group: "fluids", baseUnit: "kgPasm2",
+  units: [
+    u("kgPasm2", "Kilogram/(Pa·s·m²)", "kg/(Pa·s·m²)", 1),
+    u("permsi", "Perm (0°C)", "perm", 5.72135e-11),
+    u("perminsi", "Perm·inch (0°C)", "perm·in", 1.45322e-12),
+  ],
+};
+
+// ===== Light =====
+const luminance: Category = {
+  id: "luminance", name: "Luminance", description: "cd/m², lambert, footlambert.",
+  group: "light", baseUnit: "cdm2",
+  units: [
+    u("cdm2", "Candela/m²", "cd/m²", 1),
+    u("cdcm2", "Candela/cm²", "cd/cm²", 10000),
+    u("cdft2", "Candela/ft²", "cd/ft²", 10.7639),
+    u("lambert", "Lambert", "L", 3183.0989),
+    u("ftL", "Foot-lambert", "fL", 3.4262591),
+    u("nit", "Nit", "nt", 1),
+    u("stilb", "Stilb", "sb", 10000),
+  ],
+};
+
+const luminousIntensity: Category = {
+  id: "luminous-intensity", name: "Luminous Intensity", description: "Candela, candlepower.",
+  group: "light", baseUnit: "cd",
+  units: [
+    u("cd", "Candela", "cd", 1),
+    u("cp", "Candlepower", "cp", 0.981),
+    u("HK", "Hefner candle", "HK", 0.903),
+  ],
+};
+
+const illumination: Category = {
+  id: "illumination", name: "Illumination", description: "Lux, phot, footcandle.",
+  group: "light", baseUnit: "lx",
+  units: [
+    u("lx", "Lux", "lx", 1),
+    u("ph", "Phot", "ph", 10000),
+    u("fc", "Footcandle", "fc", 10.76391),
+    u("nox", "Nox", "nox", 0.001),
+  ],
+};
+
+const dpi: Category = {
+  id: "digital-image-resolution", name: "Digital Image Resolution", description: "DPI, dot/cm, pixel/mm.",
+  group: "light", baseUnit: "dpi",
+  units: [
+    u("dpi", "Dot/inch", "dpi", 1),
+    u("dpcm", "Dot/centimeter", "dpcm", 2.54),
+    u("dpmm", "Dot/millimeter", "dpmm", 25.4),
+    u("ppi", "Pixel/inch", "ppi", 1),
+    u("ppm", "Pixel/meter", "ppm", 0.0254),
+  ],
+};
+
+// ===== Electricity =====
+const charge: Category = {
+  id: "charge", name: "Electric Charge", description: "Coulomb, ampere-hour, electron charge.",
+  group: "electricity", baseUnit: "C",
+  units: [
+    u("C", "Coulomb", "C", 1),
+    u("mC", "Millicoulomb", "mC", 1e-3),
+    u("uC", "Microcoulomb", "µC", 1e-6),
+    u("nC", "Nanocoulomb", "nC", 1e-9),
+    u("kC", "Kilocoulomb", "kC", 1e3),
+    u("Ah", "Ampere-hour", "Ah", 3600),
+    u("mAh", "Milliampere-hour", "mAh", 3.6),
+    u("e", "Electron charge", "e", 1.602176634e-19),
+  ],
+};
+
+const linearChargeDensity: Category = {
+  id: "linear-charge-density", name: "Linear Charge Density", description: "C/m, C/cm, C/in.",
+  group: "electricity", baseUnit: "Cm",
+  units: [
+    u("Cm", "Coulomb/meter", "C/m", 1),
+    u("Ccm", "Coulomb/centimeter", "C/cm", 100),
+    u("Cin", "Coulomb/inch", "C/in", 39.3700787),
+  ],
+};
+
+const surfaceChargeDensity: Category = {
+  id: "surface-charge-density", name: "Surface Charge Density", description: "C/m², C/cm², C/in².",
+  group: "electricity", baseUnit: "Cm2",
+  units: [
+    u("Cm2", "Coulomb/m²", "C/m²", 1),
+    u("Ccm2", "Coulomb/cm²", "C/cm²", 10000),
+    u("Cin2", "Coulomb/in²", "C/in²", 1550.0031),
+  ],
+};
+
+const volumeChargeDensity: Category = {
+  id: "volume-charge-density", name: "Volume Charge Density", description: "C/m³, C/cm³, C/in³.",
+  group: "electricity", baseUnit: "Cm3",
+  units: [
+    u("Cm3", "Coulomb/m³", "C/m³", 1),
+    u("Ccm3", "Coulomb/cm³", "C/cm³", 1e6),
+    u("Cin3", "Coulomb/in³", "C/in³", 61023.7441),
+  ],
+};
+
+const linearCurrentDensity: Category = {
+  id: "linear-current-density", name: "Linear Current Density", description: "A/m, A/cm, A/in.",
+  group: "electricity", baseUnit: "Am",
+  units: [
+    u("Am", "Ampere/meter", "A/m", 1),
+    u("Acm", "Ampere/centimeter", "A/cm", 100),
+    u("Ain", "Ampere/inch", "A/in", 39.3700787),
+  ],
+};
+
+const surfaceCurrentDensity: Category = {
+  id: "surface-current-density", name: "Surface Current Density", description: "A/m², A/cm², A/in².",
+  group: "electricity", baseUnit: "Am2",
+  units: [
+    u("Am2", "Ampere/m²", "A/m²", 1),
+    u("Acm2", "Ampere/cm²", "A/cm²", 10000),
+    u("Ain2", "Ampere/in²", "A/in²", 1550.0031),
+  ],
+};
+
+const eFieldStrength: Category = {
+  id: "electric-field-strength", name: "Electric Field Strength", description: "V/m, V/cm, V/in, kV/m.",
+  group: "electricity", baseUnit: "Vm",
+  units: [
+    u("Vm", "Volt/meter", "V/m", 1),
+    u("Vcm", "Volt/centimeter", "V/cm", 100),
+    u("Vin", "Volt/inch", "V/in", 39.3700787),
+    u("kVm", "Kilovolt/meter", "kV/m", 1000),
+  ],
+};
+
+const eResistivity: Category = {
+  id: "electric-resistivity", name: "Electric Resistivity", description: "Ω·m, Ω·cm, Ω·in.",
+  group: "electricity", baseUnit: "ohmm",
+  units: [
+    u("ohmm", "Ohm·meter", "Ω·m", 1),
+    u("ohmcm", "Ohm·centimeter", "Ω·cm", 0.01),
+    u("ohmin", "Ohm·inch", "Ω·in", 0.0254),
+  ],
+};
+
+const eConductance: Category = {
+  id: "electric-conductance", name: "Electric Conductance", description: "Siemens, mho.",
+  group: "electricity", baseUnit: "S",
+  units: [
+    u("S", "Siemens", "S", 1),
+    u("mS", "Millisiemens", "mS", 1e-3),
+    u("uS", "Microsiemens", "µS", 1e-6),
+    u("mho", "Mho", "℧", 1),
+  ],
+};
+
+const eConductivity: Category = {
+  id: "electric-conductivity", name: "Electric Conductivity", description: "S/m, S/cm.",
+  group: "electricity", baseUnit: "Sm",
+  units: [
+    u("Sm", "Siemens/meter", "S/m", 1),
+    u("Scm", "Siemens/centimeter", "S/cm", 100),
+    u("mSm", "Millisiemens/meter", "mS/m", 1e-3),
+  ],
+};
+
+const capacitance: Category = {
+  id: "capacitance", name: "Electrostatic Capacitance", description: "Farad, microfarad, picofarad.",
+  group: "electricity", baseUnit: "F",
+  units: [
+    u("F", "Farad", "F", 1),
+    u("mF", "Millifarad", "mF", 1e-3),
+    u("uF", "Microfarad", "µF", 1e-6),
+    u("nF", "Nanofarad", "nF", 1e-9),
+    u("pF", "Picofarad", "pF", 1e-12),
+  ],
+};
+
+const inductance: Category = {
+  id: "inductance", name: "Inductance", description: "Henry, millihenry, microhenry.",
+  group: "electricity", baseUnit: "H",
+  units: [
+    u("H", "Henry", "H", 1),
+    u("mH", "Millihenry", "mH", 1e-3),
+    u("uH", "Microhenry", "µH", 1e-6),
+    u("nH", "Nanohenry", "nH", 1e-9),
+  ],
+};
+
+// ===== Magnetism =====
+const mmf: Category = {
+  id: "magnetomotive-force", name: "Magnetomotive Force", description: "Ampere-turn, gilbert.",
+  group: "magnetism", baseUnit: "At",
+  units: [
+    u("At", "Ampere-turn", "At", 1),
+    u("kAt", "Kiloampere-turn", "kAt", 1000),
+    u("Gb", "Gilbert", "Gb", 0.795775),
+  ],
+};
+
+const magneticFieldStrength: Category = {
+  id: "magnetic-field-strength", name: "Magnetic Field Strength", description: "A/m, oersted.",
+  group: "magnetism", baseUnit: "Am",
+  units: [
+    u("Am", "Ampere/meter", "A/m", 1),
+    u("Acm", "Ampere/centimeter", "A/cm", 100),
+    u("Oe", "Oersted", "Oe", 79.5775),
+  ],
+};
+
+const magneticFlux: Category = {
+  id: "magnetic-flux", name: "Magnetic Flux", description: "Weber, maxwell.",
+  group: "magnetism", baseUnit: "Wb",
+  units: [
+    u("Wb", "Weber", "Wb", 1),
+    u("mWb", "Milliweber", "mWb", 1e-3),
+    u("uWb", "Microweber", "µWb", 1e-6),
+    u("Mx", "Maxwell", "Mx", 1e-8),
+  ],
+};
+
+const magneticFluxDensity: Category = {
+  id: "magnetic-flux-density", name: "Magnetic Flux Density", description: "Tesla, gauss.",
+  group: "magnetism", baseUnit: "T",
+  units: [
+    u("T", "Tesla", "T", 1),
+    u("mT", "Millitesla", "mT", 1e-3),
+    u("uT", "Microtesla", "µT", 1e-6),
+    u("G", "Gauss", "G", 1e-4),
+    u("mG", "Milligauss", "mG", 1e-7),
+  ],
+};
+
+// ===== Radiology =====
+const radiation: Category = {
+  id: "radiation", name: "Radiation Dose Equivalent", description: "Sievert, rem.",
+  group: "radiology", baseUnit: "Sv",
+  units: [
+    u("Sv", "Sievert", "Sv", 1),
+    u("mSv", "Millisievert", "mSv", 1e-3),
+    u("uSv", "Microsievert", "µSv", 1e-6),
+    u("rem", "Rem", "rem", 0.01),
+    u("mrem", "Millirem", "mrem", 1e-5),
+  ],
+};
+
+const radiationActivity: Category = {
+  id: "radiation-activity", name: "Radiation Activity", description: "Becquerel, curie.",
+  group: "radiology", baseUnit: "Bq",
+  units: [
+    u("Bq", "Becquerel", "Bq", 1),
+    u("kBq", "Kilobecquerel", "kBq", 1000),
+    u("MBq", "Megabecquerel", "MBq", 1e6),
+    u("GBq", "Gigabecquerel", "GBq", 1e9),
+    u("Ci", "Curie", "Ci", 3.7e10),
+    u("mCi", "Millicurie", "mCi", 3.7e7),
+    u("uCi", "Microcurie", "µCi", 3.7e4),
+  ],
+};
+
+const radiationExposure: Category = {
+  id: "radiation-exposure", name: "Radiation Exposure", description: "Coulomb/kg, roentgen.",
+  group: "radiology", baseUnit: "Ckg",
+  units: [
+    u("Ckg", "Coulomb/kilogram", "C/kg", 1),
+    u("mCkg", "Millicoulomb/kilogram", "mC/kg", 1e-3),
+    u("R", "Roentgen", "R", 2.58e-4),
+  ],
+};
+
+const radiationAbsorbed: Category = {
+  id: "radiation-absorbed-dose", name: "Radiation Absorbed Dose", description: "Gray, rad.",
+  group: "radiology", baseUnit: "Gy",
+  units: [
+    u("Gy", "Gray", "Gy", 1),
+    u("mGy", "Milligray", "mGy", 1e-3),
+    u("uGy", "Microgray", "µGy", 1e-6),
+    u("rad", "Rad", "rad", 0.01),
+    u("mrad", "Millirad", "mrad", 1e-5),
+  ],
+};
+
+// ===== Other =====
+const prefixes: Category = {
+  id: "prefixes", name: "SI Prefixes", description: "Kilo, mega, giga, milli, micro and more.",
+  group: "other", baseUnit: "one",
+  units: [
+    u("one", "One", "1", 1),
+    u("deca", "Deca", "da", 10),
+    u("hecto", "Hecto", "h", 100),
+    u("kilo", "Kilo", "k", 1e3),
+    u("mega", "Mega", "M", 1e6),
+    u("giga", "Giga", "G", 1e9),
+    u("tera", "Tera", "T", 1e12),
+    u("peta", "Peta", "P", 1e15),
+    u("exa", "Exa", "E", 1e18),
+    u("deci", "Deci", "d", 0.1),
+    u("centi", "Centi", "c", 0.01),
+    u("milli", "Milli", "m", 1e-3),
+    u("micro", "Micro", "µ", 1e-6),
+    u("nano", "Nano", "n", 1e-9),
+    u("pico", "Pico", "p", 1e-12),
+    u("femto", "Femto", "f", 1e-15),
+    u("atto", "Atto", "a", 1e-18),
+  ],
+};
+
+const dataTransfer: Category = {
+  id: "data-transfer", name: "Data Transfer", description: "bit/s, kbps, Mbps, Gbps.",
+  group: "other", baseUnit: "bps",
+  units: [
+    u("bps", "Bit/second", "bit/s", 1),
+    u("kbps", "Kilobit/second", "kbit/s", 1e3),
+    u("Mbps", "Megabit/second", "Mbit/s", 1e6),
+    u("Gbps", "Gigabit/second", "Gbit/s", 1e9),
+    u("Tbps", "Terabit/second", "Tbit/s", 1e12),
+    u("Bps", "Byte/second", "B/s", 8),
+    u("KBps", "Kilobyte/second", "KB/s", 8e3),
+    u("MBps", "Megabyte/second", "MB/s", 8e6),
+    u("GBps", "Gigabyte/second", "GB/s", 8e9),
+    u("Kibps", "Kibibit/second", "Kibit/s", 1024),
+    u("Mibps", "Mebibit/second", "Mibit/s", 1024 ** 2),
+  ],
+};
+
+const typography: Category = {
+  id: "typography", name: "Typography", description: "Points, picas, twips, pixels.",
+  group: "other", baseUnit: "m",
+  units: [
+    u("m", "Meter", "m", 1),
+    u("cm", "Centimeter", "cm", 0.01),
+    u("mm", "Millimeter", "mm", 0.001),
+    u("in", "Inch", "in", 0.0254),
+    u("pt", "Point", "pt", 0.0254 / 72),
+    u("pica", "Pica", "pc", 0.0254 / 6),
+    u("twip", "Twip", "twip", 0.0254 / 1440),
+    u("px96", "Pixel (96 DPI)", "px", 0.0254 / 96),
+  ],
+};
+
+const volumeLumber: Category = {
+  id: "volume-lumber", name: "Volume — Lumber", description: "Board feet, cubic meter, cord.",
+  group: "other", baseUnit: "m3",
+  units: [
+    u("m3", "Cubic meter", "m³", 1),
+    u("ft3", "Cubic foot", "ft³", 0.028316846592),
+    u("in3", "Cubic inch", "in³", 1.6387064e-5),
+    u("bf", "Board foot", "FBM", 0.002359737216),
+    u("mbf", "Thousand board feet", "MBF", 2.359737216),
+    u("cord", "Cord", "cord", 3.6245563638),
+    u("cordft", "Cord foot", "cord-ft", 0.4530695455),
+    u("cunit", "Cunit", "cu", 2.8316846592),
+  ],
+};
+
+const volumeDry: Category = {
+  id: "volume-dry", name: "Volume — Dry", description: "Dry pint, dry quart, peck, bushel.",
+  group: "other", baseUnit: "L",
+  units: [
+    u("L", "Liter", "L", 1),
+    u("dpt_us", "US Dry Pint", "dry pt", 0.5506104714),
+    u("dqt_us", "US Dry Quart", "dry qt", 1.1012209428),
+    u("dgal_us", "US Dry Gallon", "dry gal", 4.4048837712),
+    u("peck_us", "US Peck", "pk", 8.8097675424),
+    u("bushel_us", "US Bushel", "bu", 35.2390701696),
+    u("peck_uk", "UK Peck", "pk (UK)", 9.09218),
+    u("bushel_uk", "UK Bushel", "bu (UK)", 36.36872),
+  ],
+};
+
 export const CATEGORIES: Category[] = [
   length, weight, temperature, volume, area, pressure, energy, power, force,
   time, speed, angle, fuel, data, frequency, density, acceleration, torque,
   current, voltage, resistance, flow,
+  // Engineering
+  velocityAngular, accelerationAngular, specificVolume, momentOfInertia, momentOfForce,
+  // Heat
+  fuelEffMass, fuelEffVolume, tempInterval, thermalExpansion, thermalResistance,
+  thermalConductivity, specificHeat, heatDensity, heatFluxDensity, heatTransferCoef,
+  // Fluids
+  flowMass, flowMolar, massFluxDensity, concentrationMolar, concentrationSolution,
+  viscosityDynamic, viscosityKinematic, surfaceTension, permeability,
+  // Light
+  luminance, luminousIntensity, illumination, dpi,
+  // Electricity
+  charge, linearChargeDensity, surfaceChargeDensity, volumeChargeDensity,
+  linearCurrentDensity, surfaceCurrentDensity, eFieldStrength, eResistivity,
+  eConductance, eConductivity, capacitance, inductance,
+  // Magnetism
+  mmf, magneticFieldStrength, magneticFlux, magneticFluxDensity,
+  // Radiology
+  radiation, radiationActivity, radiationExposure, radiationAbsorbed,
+  // Other
+  prefixes, dataTransfer, typography, volumeLumber, volumeDry,
 ];
 
 export const CATEGORY_MAP: Record<string, Category> = Object.fromEntries(
