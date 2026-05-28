@@ -10,15 +10,38 @@ export const Route = createFileRoute("/c/$category/$pair")({
     const f = c?.units.find((u: Unit) => u.id === from);
     const t = c?.units.find((u: Unit) => u.id === to);
     const title = f && t ? `${f.name} to ${t.name} — UnitPrecise` : "Converter";
-    const desc = f && t ? `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}) instantly.` : "Unit converter";
+    const desc =
+      f && t && c
+        ? `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}) instantly with engineering-grade precision. Includes formula, conversion table, and reference values for ${c.name.toLowerCase()}.`
+        : "Unit converter with engineering-grade precision for everyday and professional calculations.";
+    const factor = c && f && t ? convert(c, 1, f.id, t.id) : null;
     return {
       meta: [
         { title },
-        { name: "description", content: desc },
+        { name: "description", content: desc.slice(0, 160) },
         { property: "og:title", content: title },
-        { property: "og:description", content: desc },
+        { property: "og:description", content: desc.slice(0, 160) },
       ],
       links: [{ rel: "canonical", href: `/c/${params.category}/${params.pair}` }],
+      scripts:
+        f && t && factor !== null
+          ? [
+              {
+                type: "application/ld+json",
+                children: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "HowTo",
+                  name: `How to convert ${f.name} to ${t.name}`,
+                  description: `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}).`,
+                  step: [
+                    { "@type": "HowToStep", name: "Enter value", text: `Enter a value in ${f.name} (${f.symbol}).` },
+                    { "@type": "HowToStep", name: "Apply factor", text: `Multiply by ${formatResult(factor)} to get the value in ${t.name}.` },
+                    { "@type": "HowToStep", name: "Read result", text: `Read the converted result in ${t.name} (${t.symbol}).` },
+                  ],
+                }),
+              },
+            ]
+          : [],
     };
   },
   loader: ({ params }) => {
