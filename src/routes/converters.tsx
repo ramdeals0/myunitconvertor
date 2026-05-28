@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CATEGORIES } from "@/lib/converters/data";
 import { AdBanner } from "@/components/AdBanner";
+import { useI18n } from "@/lib/i18n";
 import { GROUP_LABELS, CategoryGroup } from "@/lib/converters/types";
 import {
   Search,
@@ -54,16 +55,16 @@ const GROUP_ORDER: CategoryGroup[] = [
 ];
 
 function AllConverters() {
+  const { t } = useI18n();
   const [q, setQ] = useState("");
   const query = q.trim().toLowerCase();
 
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-16">
       <div className="mb-10 text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">All Unit Converters</h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{t("all.h1")}</h1>
         <p className="text-muted-foreground mt-3 text-base md:text-lg">
-          Browse our complete directory of professional-grade conversion tools,
-          organized by scientific and engineering disciplines.
+          {t("all.subtitle")}
         </p>
       </div>
 
@@ -72,8 +73,8 @@ function AllConverters() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search converters…"
-          aria-label="Filter converter categories"
+          placeholder={t("all.search.placeholder")}
+          aria-label={t("all.search.placeholder")}
           className="w-full bg-surface-elevated border border-border rounded-full pl-12 pr-4 py-3.5 outline-none focus:border-primary focus:shadow-[var(--shadow-glow)]"
         />
       </div>
