@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Moon, Sun, Menu, X, Globe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useI18n, LANGUAGES, Lang } from "@/lib/i18n";
+import logo from "@/assets/logo.png";
 
 export function SiteHeader() {
   const [dark, setDark] = useState(false);
