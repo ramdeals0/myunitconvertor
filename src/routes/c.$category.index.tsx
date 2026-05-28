@@ -33,7 +33,7 @@ export const Route = createFileRoute("/c/$category/")({
 });
 
 function CategoryPage() {
-  const { category } = Route.useLoaderData();
+  const { category } = Route.useLoaderData() as { category: Category };
   const related = CATEGORIES.filter((c) => c.group === category.group && c.id !== category.id).slice(0, 6);
 
   return (
@@ -50,9 +50,9 @@ function CategoryPage() {
         <section className="mt-12">
           <h2 className="text-xl font-semibold mb-4">Popular {category.name.toLowerCase()} conversions</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {category.popular.map((p: { from: string; to: string }) => {
-              const f = category.units.find((u: Unit) => u.id === p.from);
-              const t = category.units.find((u: Unit) => u.id === p.to);
+            {category.popular.map((p) => {
+              const f = category.units.find((u) => u.id === p.from);
+              const t = category.units.find((u) => u.id === p.to);
               return (
                 <Link key={`${p.from}-${p.to}`} to="/c/$category/$pair"
                   params={{ category: category.id, pair: `${p.from}-to-${p.to}` }}
@@ -78,7 +78,7 @@ function CategoryPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {category.units.map((u: Unit) => (
+              {category.units.map((u) => (
                 <tr key={u.id} className="hover:bg-muted/30">
                   <td className="p-3 font-medium">{u.name}</td>
                   <td className="p-3 text-muted-foreground">{u.symbol}</td>

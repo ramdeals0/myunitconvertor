@@ -39,9 +39,10 @@ function parsePair(pair: string): [string, string] {
 }
 
 function PairPage() {
-  const { category, from, to } = Route.useLoaderData();
-  const f = category.units.find((u: Unit) => u.id === from)!;
-  const t = category.units.find((u: Unit) => u.id === to)!;
+  const data = Route.useLoaderData() as { category: Category; from: string; to: string };
+  const { category, from, to } = data;
+  const f = category.units.find((u) => u.id === from)!;
+  const t = category.units.find((u) => u.id === to)!;
 
   const examples = [1, 2, 5, 10, 25, 50, 100, 250, 500, 1000];
 
