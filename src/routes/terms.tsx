@@ -64,7 +64,7 @@ function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">{t("terms.s9.h")}</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            {t("terms.s9.t")} <a href="/contact" className="text-primary hover:underline">{t("common.contactPage")}</a>.
+            {t("terms.s9.t")}
           </p>
         </section>
 

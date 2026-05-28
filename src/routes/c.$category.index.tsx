@@ -18,7 +18,7 @@ export const Route = createFileRoute("/c/$category/")({
       ? [
           { q: "How precise is this tool?", a: "We use 12-digit precision constants aligned with international metrology standards." },
           { q: `Which ${c.name.toLowerCase()} units are supported?`, a: `${c.units.length} units across SI, US Customary, and Imperial systems where applicable.` },
-          { q: "Is it free for API use?", a: "The web tool is free. For programmatic or high-volume usage, contact us about API access." },
+          { q: "Is it free to use?", a: "Yes, the web tool is completely free for personal, educational, and professional use." },
         ]
       : [];
     const scripts: Array<{ type: string; children: string }> = [];
@@ -195,8 +195,8 @@ function CategoryPage() {
                   a: `${category.units.length} units across SI, US Customary, and Imperial systems where applicable.`,
                 },
                 {
-                  q: "Is it free for API use?",
-                  a: "The web tool is free. For programmatic or high-volume usage, contact us about API access.",
+                  q: "Is it free to use?",
+                  a: "Yes, the web tool is completely free for personal, educational, and professional use.",
                 },
               ].map((item) => (
                 <details key={item.q} className="group py-3">

@@ -47,7 +47,7 @@ function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">{t("privacy.s7.h")}</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            {t("privacy.s7.t")} <a href="/contact" className="text-primary hover:underline">{t("common.contactPage")}</a>.
+            {t("privacy.s7.t")}
           </p>
         </section>
 
