@@ -13,6 +13,7 @@ export const Route = createFileRoute("/c/$category/")({
     const desc = c
       ? `${c.name} converter with ${c.units.length} units. ${baseDesc} Fast, accurate, engineering-grade precision for everyday and professional use.`
       : "Unit converter with engineering-grade precision for everyday and professional use across dozens of categories.";
+    const url = `https://myunitconvertor.lovable.app/c/${params.category}`;
     const faqs = c
       ? [
           { q: "How precise is this tool?", a: "We use 12-digit precision constants aligned with international metrology standards." },
@@ -20,30 +21,45 @@ export const Route = createFileRoute("/c/$category/")({
           { q: "Is it free for API use?", a: "The web tool is free. For programmatic or high-volume usage, contact us about API access." },
         ]
       : [];
+    const scripts: Array<{ type: string; children: string }> = [];
+    if (c) {
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://myunitconvertor.lovable.app/" },
+            { "@type": "ListItem", position: 2, name: c.name, item: url },
+          ],
+        }),
+      });
+    }
+    if (faqs.length) {
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      });
+    }
     return {
       meta: [
         { title },
         { name: "description", content: desc.slice(0, 160) },
         { property: "og:title", content: title },
         { property: "og:description", content: desc.slice(0, 160) },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
       ],
-      links: [{ rel: "canonical", href: `/c/${params.category}` }],
-      scripts: faqs.length
-        ? [
-            {
-              type: "application/ld+json",
-              children: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                mainEntity: faqs.map((f) => ({
-                  "@type": "Question",
-                  name: f.q,
-                  acceptedAnswer: { "@type": "Answer", text: f.a },
-                })),
-              }),
-            },
-          ]
-        : [],
+      links: [{ rel: "canonical", href: url }],
+      scripts,
     };
   },
   loader: ({ params }) => {

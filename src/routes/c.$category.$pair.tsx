@@ -15,34 +15,49 @@ export const Route = createFileRoute("/c/$category/$pair")({
       f && t && c
         ? `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}) instantly with engineering-grade precision. Includes formula, conversion table, and reference values for ${c.name.toLowerCase()}.`
         : "Unit converter with engineering-grade precision for everyday and professional calculations.";
+    const url = `https://myunitconvertor.lovable.app/c/${params.category}/${params.pair}`;
+    const catUrl = `https://myunitconvertor.lovable.app/c/${params.category}`;
     const factor = c && f && t ? convert(c, 1, f.id, t.id) : null;
+    const scripts: Array<{ type: string; children: string }> = [];
+    if (c && f && t && factor !== null) {
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: `How to convert ${f.name} to ${t.name}`,
+          description: `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}).`,
+          step: [
+            { "@type": "HowToStep", name: "Enter value", text: `Enter a value in ${f.name} (${f.symbol}).` },
+            { "@type": "HowToStep", name: "Apply factor", text: `Multiply by ${formatResult(factor)} to get the value in ${t.name}.` },
+            { "@type": "HowToStep", name: "Read result", text: `Read the converted result in ${t.name} (${t.symbol}).` },
+          ],
+        }),
+      });
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://myunitconvertor.lovable.app/" },
+            { "@type": "ListItem", position: 2, name: c.name, item: catUrl },
+            { "@type": "ListItem", position: 3, name: `${f.name} to ${t.name}`, item: url },
+          ],
+        }),
+      });
+    }
     return {
       meta: [
         { title },
         { name: "description", content: desc.slice(0, 160) },
         { property: "og:title", content: title },
         { property: "og:description", content: desc.slice(0, 160) },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "article" },
       ],
-      links: [{ rel: "canonical", href: `/c/${params.category}/${params.pair}` }],
-      scripts:
-        f && t && factor !== null
-          ? [
-              {
-                type: "application/ld+json",
-                children: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "HowTo",
-                  name: `How to convert ${f.name} to ${t.name}`,
-                  description: `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}).`,
-                  step: [
-                    { "@type": "HowToStep", name: "Enter value", text: `Enter a value in ${f.name} (${f.symbol}).` },
-                    { "@type": "HowToStep", name: "Apply factor", text: `Multiply by ${formatResult(factor)} to get the value in ${t.name}.` },
-                    { "@type": "HowToStep", name: "Read result", text: `Read the converted result in ${t.name} (${t.symbol}).` },
-                  ],
-                }),
-              },
-            ]
-          : [],
+      links: [{ rel: "canonical", href: url }],
+      scripts,
     };
   },
   loader: ({ params }) => {
