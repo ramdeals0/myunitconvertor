@@ -5,14 +5,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Unit Convertor" },
-      { name: "description", content: "Unit Convertor Privacy Policy. Learn how we protect your data. We do not collect personal information and all conversions happen locally in your browser." },
-      { property: "og:title", content: "Privacy Policy — Unit Convertor" },
-      { property: "og:description", content: "Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
+      { title: "Privacy Policy — Turbo Unit Converter" },
+      { name: "description", content: "Turbo Unit Converter Privacy Policy. Learn how we protect your data. We do not collect personal information and all conversions happen locally in your browser." },
+      { property: "og:title", content: "Privacy Policy — Turbo Unit Converter" },
+      { property: "og:description", content: "Turbo Unit Converter Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/privacy" },
-      { name: "twitter:title", content: "Privacy Policy — Unit Convertor" },
-      { name: "twitter:description", content: "Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
+      { name: "twitter:title", content: "Privacy Policy — Turbo Unit Converter" },
+      { name: "twitter:description", content: "Turbo Unit Converter Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/privacy" },

@@ -5,14 +5,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — Unit Convertor" },
-      { name: "description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
-      { property: "og:title", content: "Contact Us — Unit Convertor" },
-      { property: "og:description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { title: "Contact Us — Turbo Unit Converter" },
+      { name: "description", content: "Get in touch with the Turbo Unit Converter team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { property: "og:title", content: "Contact Us — Turbo Unit Converter" },
+      { property: "og:description", content: "Get in touch with the Turbo Unit Converter team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/contact" },
-      { name: "twitter:title", content: "Contact Us — Unit Convertor" },
-      { name: "twitter:description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { name: "twitter:title", content: "Contact Us — Turbo Unit Converter" },
+      { name: "twitter:description", content: "Get in touch with the Turbo Unit Converter team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/contact" },
