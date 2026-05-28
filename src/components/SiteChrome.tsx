@@ -84,9 +84,12 @@ export function SiteFooter() {
     <footer className="border-t border-border mt-20 bg-surface-elevated">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 text-sm text-muted-foreground flex flex-col md:flex-row items-center justify-between gap-3">
         <div>
-          <span className="font-semibold text-foreground">UnitPrecise</span> — Professional unit conversion.
+          <span className="font-semibold text-foreground">UnitPrecise</span> — Professional unit conversion &amp; technical tools.
         </div>
-        <div>© {new Date().getFullYear()} UnitPrecise. Engineered for accuracy.</div>
+        <div className="flex flex-col md:items-end gap-1">
+          <div>© {new Date().getFullYear()} UnitPrecise. Engineered for accuracy.</div>
+          <div className="text-xs">Last Updated: June 12, 2024</div>
+        </div>
       </div>
     </footer>
   );
