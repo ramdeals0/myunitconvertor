@@ -1,7 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeftRight, Copy, Check } from "lucide-react";
+import { ArrowLeftRight, Copy, Check, ChevronsUpDown } from "lucide-react";
 import { Category } from "@/lib/converters/types";
 import { convert, formatResult } from "@/lib/converters/data";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
 
 interface Props {
   category: Category;
@@ -115,28 +125,73 @@ function UnitField({
       </label>
       <div className="relative">
         <input
-          type={editable ? "text" : "text"}
+          type="text"
           inputMode="decimal"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           readOnly={readOnly}
           placeholder="0"
-          className={`w-full bg-surface-elevated border border-border rounded-xl pl-4 pr-36 py-4 text-2xl font-mono-num font-medium outline-none transition-all
+          className={`w-full bg-surface-elevated border border-border rounded-xl pl-4 pr-44 py-4 text-2xl font-mono-num font-medium outline-none transition-all
             ${readOnly ? "text-muted-foreground bg-muted/40" : "focus:border-primary focus:shadow-[var(--shadow-glow)]"}`}
         />
         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
           {trailing}
-          <select
-            value={unit}
-            onChange={(e) => onUnitChange(e.target.value)}
-            className="bg-muted border-none rounded-lg py-1.5 pl-2 pr-7 text-xs font-semibold focus:ring-0 cursor-pointer max-w-[140px] truncate"
-          >
-            {category.units.map((u) => (
-              <option key={u.id} value={u.id}>{u.symbol} — {u.name}</option>
-            ))}
-          </select>
+          <UnitPicker unit={unit} onUnitChange={onUnitChange} category={category} />
         </div>
       </div>
     </div>
+  );
+}
+
+function UnitPicker({
+  unit,
+  onUnitChange,
+  category,
+}: {
+  unit: string;
+  onUnitChange: (v: string) => void;
+  category: Category;
+}) {
+  const [open, setOpen] = useState(false);
+  const selected = category.units.find((u) => u.id === unit);
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          className="flex items-center gap-1 bg-muted border border-border hover:border-primary rounded-lg py-1.5 pl-2 pr-2 text-xs font-semibold focus:ring-0 cursor-pointer max-w-[160px] truncate transition"
+        >
+          <span className="truncate">{selected?.symbol ?? unit}</span>
+          <ChevronsUpDown className="h-3 w-3 shrink-0 opacity-50" />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="w-64 p-0" align="end">
+        <Command>
+          <CommandInput placeholder="Search unit…" className="h-9" />
+          <CommandList>
+            <CommandEmpty className="py-3 text-xs text-muted-foreground">No unit found.</CommandEmpty>
+            <CommandGroup>
+              {category.units.map((u) => (
+                <CommandItem
+                  key={u.id}
+                  value={`${u.name} ${u.symbol} ${u.aliases?.join(" ") ?? ""}`}
+                  onSelect={() => {
+                    onUnitChange(u.id);
+                    setOpen(false);
+                  }}
+                  className="cursor-pointer text-sm"
+                >
+                  <span className="flex-1 truncate">
+                    {u.symbol} — {u.name}
+                  </span>
+                  {u.id === unit && <Check className="h-4 w-4 shrink-0 text-primary" />}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   );
 }
