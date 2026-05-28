@@ -79,7 +79,7 @@ function AboutPage() {
             <h2 className="text-xl font-semibold">{t("about.feedback.title")}</h2>
           </div>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            {t("about.feedback.text")} <a href="/contact" className="text-primary hover:underline">{t("about.feedback.link")}</a> {t("about.feedback.tail")}
+            {t("about.feedback.text")}
           </p>
         </section>
       </div>

@@ -13,13 +13,11 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ConvertersRouteImport } from './routes/converters'
-import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CCategoryRouteImport } from './routes/c.$category'
 import { Route as CCategoryIndexRouteImport } from './routes/c.$category.index'
 import { Route as CCategoryPairRouteImport } from './routes/c.$category.$pair'
-import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -39,11 +37,6 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ConvertersRoute = ConvertersRouteImport.update({
   id: '/converters',
   path: '/converters',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -71,34 +64,25 @@ const CCategoryPairRoute = CCategoryPairRouteImport.update({
   path: '/$pair',
   getParentRoute: () => CCategoryRoute,
 } as any)
-const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
-  id: '/api/public/contact',
-  path: '/api/public/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
   '/converters': typeof ConvertersRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/c/$category': typeof CCategoryRouteWithChildren
-  '/api/public/contact': typeof ApiPublicContactRoute
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category/': typeof CCategoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
   '/converters': typeof ConvertersRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/api/public/contact': typeof ApiPublicContactRoute
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category': typeof CCategoryIndexRoute
 }
@@ -106,13 +90,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/contact': typeof ContactRoute
   '/converters': typeof ConvertersRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/c/$category': typeof CCategoryRouteWithChildren
-  '/api/public/contact': typeof ApiPublicContactRoute
   '/c/$category/$pair': typeof CCategoryPairRoute
   '/c/$category/': typeof CCategoryIndexRoute
 }
@@ -121,38 +103,32 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/contact'
     | '/converters'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
     | '/c/$category'
-    | '/api/public/contact'
     | '/c/$category/$pair'
     | '/c/$category/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/contact'
     | '/converters'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/api/public/contact'
     | '/c/$category/$pair'
     | '/c/$category'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/contact'
     | '/converters'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
     | '/c/$category'
-    | '/api/public/contact'
     | '/c/$category/$pair'
     | '/c/$category/'
   fileRoutesById: FileRoutesById
@@ -160,13 +136,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  ContactRoute: typeof ContactRoute
   ConvertersRoute: typeof ConvertersRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CCategoryRoute: typeof CCategoryRouteWithChildren
-  ApiPublicContactRoute: typeof ApiPublicContactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,13 +171,6 @@ declare module '@tanstack/react-router' {
       path: '/converters'
       fullPath: '/converters'
       preLoaderRoute: typeof ConvertersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -241,13 +208,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CCategoryPairRouteImport
       parentRoute: typeof CCategoryRoute
     }
-    '/api/public/contact': {
-      id: '/api/public/contact'
-      path: '/api/public/contact'
-      fullPath: '/api/public/contact'
-      preLoaderRoute: typeof ApiPublicContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -268,13 +228,11 @@ const CCategoryRouteWithChildren = CCategoryRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  ContactRoute: ContactRoute,
   ConvertersRoute: ConvertersRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CCategoryRoute: CCategoryRouteWithChildren,
-  ApiPublicContactRoute: ApiPublicContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
