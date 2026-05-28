@@ -12,9 +12,7 @@ A fast, precise, and fully-featured online unit conversion calculator built with
 | Build Tool | [Vite](https://vitejs.dev/) 7 |
 | Styling | [Tailwind CSS](https://tailwindcss.com/) v4 + CSS custom properties (OKLCH tokens) |
 | UI Components | [Radix UI](https://www.radix-ui.com/) primitives + custom variants |
-| Backend / DB | [Supabase](https://supabase.com/) (Postgres, Auth, Realtime) |
 | State & Data | [TanStack Query](https://tanstack.com/query) v5 |
-| Forms | React Hook Form + Zod |
 | Icons | [Lucide React](https://lucide.dev/) |
 | Charts | [Recharts](https://recharts.org/) |
 
@@ -24,7 +22,7 @@ A fast, precise, and fully-featured online unit conversion calculator built with
 
 ```text
 src/
-  components/           # Reusable UI components (Header, Footer, AdBanner, Converter, etc.)
+  components/           # Reusable UI components (Header, Footer, AdBanner, Converter, ScientificCalculator, etc.)
   lib/
     i18n.tsx            # i18n provider & dictionaries (en, es, hi)
     converters/         # Conversion logic, category data, unit definitions
@@ -33,33 +31,14 @@ src/
     converters.tsx      # All Converters listing page
     c.$category.index.tsx    # Category overview page
     c.$category.$pair.tsx    # Specific conversion pair page
-    about.tsx, contact.tsx   # Static pages
-    api/public/          # Public API routes (contact form, webhooks)
+    about.tsx           # About page
+    privacy.tsx         # Privacy Policy page
+    terms.tsx           # Terms of Service page
+    sitemap[.]xml.ts    # Dynamic sitemap generator (server route)
   styles.css            # Tailwind v4 entry + design tokens
   router.tsx            # TanStack Router bootstrap
   start.ts              # SSR / server function middleware wiring
 ```
-
----
-
-## Environment Variables
-
-Create a `.env` file at the project root with the following keys:
-
-```bash
-# Supabase (Required for auth & database)
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=your-anon-key
-VITE_SUPABASE_PROJECT_ID=your-project-id
-
-# Optional: used by server-side code if you add server functions
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key   # Keep secret — server only
-
-# Optional: contact form API (if using an external email service)
-# CONTACT_API_KEY=...
-```
-
-> **Note:** `VITE_*` variables are embedded into the client bundle at build time. Never prefix secret keys with `VITE_`.
 
 ---
 
@@ -116,8 +95,7 @@ vercel --prod
 1. Push the repo to GitHub.
 2. Import the project in the [Vercel Dashboard](https://vercel.com/dashboard).
 3. Set **Framework Preset** to *Other* (or let it auto-detect Vite).
-4. Add the environment variables from the table above.
-5. Vercel will run `bun run build` and deploy.
+4. Vercel will run `bun run build` and deploy.
 
 > **Build Settings:**
 > - Build Command: `bun run build`
@@ -148,8 +126,7 @@ netlify deploy --build --prod
 2. Import the project in the [Netlify Dashboard](https://app.netlify.com).
 3. Set **Build Command:** `bun run build`
 4. Set **Publish Directory:** `dist/client`
-5. Add environment variables in **Site Settings → Environment**.
-6. For SSR, configure `netlify.toml`:
+5. For SSR, configure `netlify.toml`:
    ```toml
    [build]
      command = "bun run build"
@@ -184,7 +161,6 @@ wrangler pages deploy dist/client --project-name=turbo-unit-converter
 3. Connect your GitHub repo.
 4. Set **Build Command:** `bun run build`
 5. Set **Build Output:** `dist/client`
-6. Add environment variables in **Settings → Environment Variables**.
 
 > The `@lovable.dev/vite-tanstack-config` already sets `nitro.preset = "cloudflare-pages"` by default, so no extra config is needed.
 
@@ -228,8 +204,7 @@ server {
 1. Add the `Dockerfile` and `nginx.conf` to your repo root.
 2. Push to GitHub.
 3. Create a new service in Railway or Render and point it at the repo.
-4. Add environment variables in the service dashboard.
-5. Deploy — the container will build and serve the static output.
+4. Deploy — the container will build and serve the static output.
 
 ---
 
@@ -260,7 +235,7 @@ app.listen(3000, () => console.log("http://localhost:3000"));
 
 ## Important Notes for External Hosting
 
-1. **Supabase dependency** — This app uses Supabase for authentication and database. When migrating away from Lovable Cloud, ensure your Supabase project is accessible and update `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` to point to your own instance.
+1. **No backend required** — This is a fully static/client-side application. No database, authentication, or API keys are needed for deployment. The app runs entirely in the browser with client-side conversion logic.
 
 2. **SSR / Server Functions** — TanStack Start uses Nitro under the hood. The default preset targets Cloudflare Workers. If you deploy to Vercel, Netlify, or a raw Node server, you may need to change the Nitro preset in `vite.config.ts` (see the Vercel section above).
 
