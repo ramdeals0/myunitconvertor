@@ -7,6 +7,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
+import { ScientificCalculator } from "@/components/ScientificCalculator";
 
 import appCss from "../styles.css?url";
 
@@ -133,6 +134,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <ScientificCalculator />
     </QueryClientProvider>
   );
 }
