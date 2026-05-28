@@ -40,27 +40,68 @@ function AllConverters() {
         />
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-12">
         {groups.map((g) => {
-          const items = CATEGORIES.filter(
-            (c) => c.group === g && (!q || c.name.toLowerCase().includes(q.toLowerCase())),
-          );
+          const items = CATEGORIES.filter((c) => {
+            if (!q) return c.group === g;
+            const ql = q.toLowerCase();
+            return (
+              c.group === g &&
+              (c.name.toLowerCase().includes(ql) ||
+                c.units.some((u) => u.name.toLowerCase().includes(ql) || u.symbol.toLowerCase().includes(ql)))
+            );
+          });
           if (!items.length) return null;
           return (
-            <div key={g}>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+            <section key={g}>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
                 {GROUP_LABELS[g]}
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {items.map((c) => (
-                  <Link key={c.id} to="/c/$category" params={{ category: c.id }}
-                    className="bg-surface-elevated border border-border rounded-xl p-4 hover:border-primary transition">
-                    <div className="font-semibold">{c.name}</div>
-                    <div className="text-xs text-muted-foreground mt-1">{c.units.length} units</div>
-                  </Link>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {items.map((c) => {
+                  const base = c.units[0];
+                  return (
+                    <div key={c.id} className="bg-surface-elevated border border-border rounded-xl p-5 hover:border-primary transition">
+                      <div className="flex items-baseline justify-between mb-3">
+                        <Link
+                          to="/c/$category"
+                          params={{ category: c.id }}
+                          className="font-semibold text-lg hover:text-primary"
+                        >
+                          {c.name}
+                        </Link>
+                        <span className="text-xs text-muted-foreground">{c.units.length} units</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {c.units.slice(0, 12).map((u) => {
+                          const other = c.units.find((x) => x.id !== u.id) ?? u;
+                          const pair = u.id === base.id ? `${u.id}-to-${other.id}` : `${u.id}-to-${base.id}`;
+                          return (
+                            <Link
+                              key={u.id}
+                              to="/c/$category/$pair"
+                              params={{ category: c.id, pair }}
+                              className="text-xs px-2.5 py-1 rounded-full border border-border bg-background hover:border-primary hover:text-primary transition"
+                            >
+                              {u.name}
+                            </Link>
+                          );
+                        })}
+                        {c.units.length > 12 && (
+                          <Link
+                            to="/c/$category"
+                            params={{ category: c.id }}
+                            className="text-xs px-2.5 py-1 rounded-full text-muted-foreground hover:text-primary"
+                          >
+                            +{c.units.length - 12} more
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            </section>
           );
         })}
       </div>
