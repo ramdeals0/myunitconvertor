@@ -81,13 +81,13 @@ function HomePage() {
       <section className="mb-10">
         <div className="text-center mb-8 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary mb-5">
-            <BadgeCheck className="h-3.5 w-3.5" /> Engineering-grade precision
+            <BadgeCheck className="h-3.5 w-3.5" /> {t("home.badge")}
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.05]">
-            Professional Unit Converter <span className="text-primary">&amp; Engineering Tools</span>
+            {t("home.h1.part1")} <span className="text-primary">{t("home.h1.part2")}</span>
           </h1>
           <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
-            A clean, fast, modern unit converter for every category you need. Precision-engineered for students, engineers, and travelers.
+            {t("home.subtitle")}
           </p>
         </div>
 
@@ -121,12 +121,12 @@ function HomePage() {
 
       {/* Common conversions */}
       <section className="mb-16">
-        <SectionHeader title="Common Unit Conversions" subtitle="Jump straight to the most-used unit pairs for quick calculation." />
+        <SectionHeader title={t("home.common.title")} subtitle={t("home.common.subtitle")} />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {COMMON_CONVERSIONS.map(([cat, from, to]) => {
             const c = CATEGORY_MAP[cat];
             const f = c.units.find((u) => u.id === from);
-            const t = c.units.find((u) => u.id === to);
+            const toU = c.units.find((u) => u.id === to);
             return (
               <Link
                 key={`${cat}-${from}-${to}`}
@@ -136,7 +136,7 @@ function HomePage() {
               >
                 <div className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">{c.name}</div>
                 <div className="mt-2 font-semibold flex items-center gap-1.5">
-                  {f?.symbol} <ArrowRight className="h-3.5 w-3.5 text-primary" /> {t?.symbol}
+                  {f?.symbol} <ArrowRight className="h-3.5 w-3.5 text-primary" /> {toU?.symbol}
                 </div>
               </Link>
             );
@@ -146,7 +146,7 @@ function HomePage() {
 
       {/* Why choose */}
       <section className="mb-16">
-        <SectionHeader title="Why Choose Unit Convertor?" subtitle="Built for engineers, students, and anyone who needs answers they can trust." centered />
+        <SectionHeader title={t("home.why.title")} subtitle={t("home.why.subtitle")} centered />
         <div className="grid md:grid-cols-3 gap-5">
           {FEATURES.map(({ icon: Icon, title, text }) => (
             <div key={title} className="bg-surface-elevated border border-border rounded-2xl p-6 hover:border-primary/40 hover:shadow-[var(--shadow-card)] transition">
@@ -162,26 +162,26 @@ function HomePage() {
 
       {/* Search + Browse all */}
       <section className="mb-16">
-        <SectionHeader title="Browse All Unit Converters" subtitle="Every major scientific and engineering category, organized for easy access." centered />
+        <SectionHeader title={t("home.browse.title")} subtitle={t("home.browse.subtitle")} centered />
         <div className="relative max-w-xl mx-auto mb-8">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search units, categories, or symbols…"
-            aria-label="Search unit converters"
+            placeholder={t("home.search.placeholder")}
+            aria-label={t("home.search.placeholder")}
             className="w-full bg-surface-elevated border border-border rounded-full pl-12 pr-4 py-3.5 outline-none focus:border-primary focus:shadow-[var(--shadow-glow)]"
           />
           {query && (
             <div className="absolute z-10 inset-x-0 top-full mt-2 bg-surface-elevated border border-border rounded-xl divide-y divide-border max-h-72 overflow-auto shadow-[var(--shadow-card)]">
               {filtered.length === 0 && (
-                <div className="p-4 text-sm text-muted-foreground">No matches.</div>
+                <div className="p-4 text-sm text-muted-foreground">{t("home.search.noMatches")}</div>
               )}
               {filtered.slice(0, 12).map((c) => (
                 <Link key={c.id} to="/c/$category" params={{ category: c.id }}
                   className="flex items-center justify-between p-3 hover:bg-muted/50 text-sm">
                   <span className="font-medium">{c.name}</span>
-                  <span className="text-xs text-muted-foreground">{c.units.length} units</span>
+                  <span className="text-xs text-muted-foreground">{c.units.length} {t("home.units")}</span>
                 </Link>
               ))}
             </div>
@@ -209,7 +209,7 @@ function HomePage() {
                           </div>
                           <div className="min-w-0">
                             <div className="font-semibold text-sm truncate">{c.name}</div>
-                            <div className="text-xs text-muted-foreground">{c.units.length} units</div>
+                            <div className="text-xs text-muted-foreground">{c.units.length} {t("home.units")}</div>
                           </div>
                         </div>
                       </Link>
@@ -224,7 +224,7 @@ function HomePage() {
 
       {/* FAQ */}
       <section>
-        <SectionHeader title="Frequently Asked Questions" subtitle="Answers to common questions about Unit Convertor." centered />
+        <SectionHeader title={t("home.faq.title")} subtitle={t("home.faq.subtitle")} centered />
         <div className="max-w-3xl mx-auto space-y-3">
           {FAQS.map((f) => (
             <details key={f.q} className="group bg-surface-elevated border border-border rounded-xl p-5 open:shadow-[var(--shadow-card)] transition">
