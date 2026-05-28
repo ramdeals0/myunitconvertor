@@ -47,6 +47,11 @@ export const Route = createFileRoute("/api/public/contact")({
           );
         }
 
+        const cleanName = name.trim();
+        const cleanEmail = email.trim().toLowerCase();
+        const cleanSubject = subject.trim();
+        const cleanMessage = message.trim();
+
         // Store in database using anon key (public insert is allowed by RLS policy)
         const supabase = createClient(
           process.env.SUPABASE_URL!,
@@ -57,10 +62,10 @@ export const Route = createFileRoute("/api/public/contact")({
         );
 
         const { error } = await supabase.from("contact_submissions").insert({
-          name: name.trim(),
-          email: email.trim().toLowerCase(),
-          subject: subject.trim(),
-          message: message.trim(),
+          name: cleanName,
+          email: cleanEmail,
+          subject: cleanSubject,
+          message: cleanMessage,
         });
 
         if (error) {
@@ -69,6 +74,29 @@ export const Route = createFileRoute("/api/public/contact")({
             JSON.stringify({ error: "Failed to save your message. Please try again later." }),
             { status: 500, headers: { "Content-Type": "application/json" } }
           );
+        }
+
+        // Optionally send email notification if Resend is configured
+        const resendApiKey = process.env.RESEND_API_KEY;
+        if (resendApiKey) {
+          try {
+            await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${resendApiKey}`,
+              },
+              body: JSON.stringify({
+                from: "UnitPrecise Contact <onboarding@resend.dev>",
+                to: ["ramdeals0@gmail.com"],
+                subject: `[UnitPrecise Contact] ${cleanSubject}`,
+                text: `Name: ${cleanName}\nEmail: ${cleanEmail}\nSubject: ${cleanSubject}\n\nMessage:\n${cleanMessage}`,
+              }),
+            });
+          } catch (emailErr) {
+            // Non-fatal: the message is already saved in the database
+            console.error("Email notification failed:", emailErr);
+          }
         }
 
         return new Response(
