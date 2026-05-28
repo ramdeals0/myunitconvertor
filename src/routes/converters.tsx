@@ -34,6 +34,7 @@ function AllConverters() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Filter converters…"
+          aria-label="Filter converter categories"
           className="w-full bg-surface-elevated border border-border rounded-full pl-12 pr-4 py-3.5 outline-none focus:border-primary focus:shadow-[var(--shadow-glow)]"
         />
       </div>
