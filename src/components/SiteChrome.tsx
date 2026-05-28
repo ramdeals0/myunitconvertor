@@ -133,8 +133,6 @@ export function SiteFooter() {
           <div className="flex items-center gap-4">
             <Link to="/about" className="hover:text-foreground transition-colors">{t("footer.about")}</Link>
             <span className="text-border">|</span>
-            <Link to="/contact" className="hover:text-foreground transition-colors">{t("footer.contact")}</Link>
-            <span className="text-border">|</span>
             <Link to="/privacy" className="hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
             <span className="text-border">|</span>
             <Link to="/terms" className="hover:text-foreground transition-colors">{t("footer.terms")}</Link>
