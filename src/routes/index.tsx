@@ -4,6 +4,7 @@ import { Converter } from "@/components/Converter";
 import { AdBanner } from "@/components/AdBanner";
 import { CATEGORIES, CATEGORY_MAP } from "@/lib/converters/data";
 import { GROUP_LABELS } from "@/lib/converters/types";
+import { useI18n } from "@/lib/i18n";
 import {
   Search, ArrowRight, Ruler, Weight, Thermometer, Beaker, Square, Gauge, Zap, Clock,
   Wind, Compass, HardDrive, Fuel, ShieldCheck, Cpu, FlaskConical, GraduationCap,
@@ -46,32 +47,26 @@ const COMMON_CONVERSIONS = [
 ] as const;
 
 
-const FEATURES = [
-  { icon: BadgeCheck, title: "Engineering-Grade Precision",
-    text: "Our algorithms are verified against NIST standards for high-fidelity technical calculations." },
-  { icon: Zap, title: "Instant Real-Time Results",
-    text: "Get conversions as you type. No page reloads or waiting for servers — pure client-side speed." },
-  { icon: Lock, title: "Privacy-Focused",
-    text: "We don't store your input data. All conversions happen directly in your browser for total security." },
-];
-
-const FAQS = [
-  { q: "How accurate is the conversion?",
-    a: "Unit Convertor uses double-precision floating-point arithmetic and NIST-verified conversion factors. We support up to 12 decimal places of precision for critical technical tasks." },
-  { q: "Is this tool free to use?",
-    a: "Yes, Unit Convertor is 100% free for students and professional engineers. We sustain the platform through minimal, non-intrusive advertisements." },
-  { q: "Does it work offline?",
-    a: "Initial loading needs a connection, but once the page is open the conversion logic runs entirely in your browser." },
-  { q: "Can I suggest a new unit?",
-    a: "Absolutely. Use the contact link in the footer to suggest new categories or specialized units." },
-];
-
 const QUICK_CATEGORIES = ["length", "weight", "temperature", "volume", "area", "time", "speed"];
 
 function HomePage() {
+  const { t } = useI18n();
   const [categoryId, setCategoryId] = useState("length");
   const category = CATEGORY_MAP[categoryId];
   const [query, setQuery] = useState("");
+
+  const FEATURES = [
+    { icon: BadgeCheck, title: t("home.feature.precision.title"), text: t("home.feature.precision.text") },
+    { icon: Zap, title: t("home.feature.instant.title"), text: t("home.feature.instant.text") },
+    { icon: Lock, title: t("home.feature.privacy.title"), text: t("home.feature.privacy.text") },
+  ];
+
+  const FAQS = [
+    { q: t("home.faq.q1"), a: t("home.faq.a1") },
+    { q: t("home.faq.q2"), a: t("home.faq.a2") },
+    { q: t("home.faq.q3"), a: t("home.faq.a3") },
+    { q: t("home.faq.q4"), a: t("home.faq.a4") },
+  ];
 
   const filtered = CATEGORIES.filter((c) =>
     c.name.toLowerCase().includes(query.toLowerCase()) ||
