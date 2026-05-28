@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/c/$category/")({
   head: ({ params }) => {
     const c = CATEGORY_MAP[params.category];
-    const title = c ? `${c.name} Converter — My Unit Convertor` : "Converter";
+    const title = c ? `${c.name} Converter — Unit Convertor` : "Converter";
     const baseDesc = c?.description ?? "Unit converter";
     const desc = c
       ? `${c.name} converter with ${c.units.length} units. ${baseDesc} Fast, accurate, engineering-grade precision for everyday and professional use.`

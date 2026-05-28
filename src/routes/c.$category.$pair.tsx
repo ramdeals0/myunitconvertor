@@ -10,7 +10,7 @@ export const Route = createFileRoute("/c/$category/$pair")({
     const [from, to] = parsePair(params.pair);
     const f = c?.units.find((u: Unit) => u.id === from);
     const t = c?.units.find((u: Unit) => u.id === to);
-    const title = f && t ? `${f.name} to ${t.name} — My Unit Convertor` : "Converter";
+    const title = f && t ? `${f.name} to ${t.name} — Unit Convertor` : "Converter";
     const desc =
       f && t && c
         ? `Convert ${f.name} (${f.symbol}) to ${t.name} (${t.symbol}) instantly with engineering-grade precision. Includes formula, conversion table, and reference values for ${c.name.toLowerCase()}.`
