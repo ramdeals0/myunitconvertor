@@ -4,14 +4,14 @@ import { ShieldCheck } from "lucide-react";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — My Unit Convertor" },
-      { name: "description", content: "My Unit Convertor Privacy Policy. Learn how we protect your data. We do not collect personal information and all conversions happen locally in your browser." },
-      { property: "og:title", content: "Privacy Policy — My Unit Convertor" },
-      { property: "og:description", content: "My Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
+      { title: "Privacy Policy — Unit Convertor" },
+      { name: "description", content: "Unit Convertor Privacy Policy. Learn how we protect your data. We do not collect personal information and all conversions happen locally in your browser." },
+      { property: "og:title", content: "Privacy Policy — Unit Convertor" },
+      { property: "og:description", content: "Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/privacy" },
-      { name: "twitter:title", content: "Privacy Policy — My Unit Convertor" },
-      { name: "twitter:description", content: "My Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
+      { name: "twitter:title", content: "Privacy Policy — Unit Convertor" },
+      { name: "twitter:description", content: "Unit Convertor Privacy Policy. We do not collect personal information and all conversions happen locally in your browser." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/privacy" },
@@ -33,7 +33,7 @@ function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your privacy is important to us. This policy explains how My Unit Convertor handles your data.
+            Your privacy is important to us. This policy explains how Unit Convertor handles your data.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-foreground">1. Information We Do Not Collect</h2>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            My Unit Convertor is designed with privacy at its core. We do not require you to create an account, sign in, or provide any personal information to use our tools. All unit conversions are performed entirely in your web browser — no data is sent to our servers for processing.
+            Unit Convertor is designed with privacy at its core. We do not require you to create an account, sign in, or provide any personal information to use our tools. All unit conversions are performed entirely in your web browser — no data is sent to our servers for processing.
           </p>
         </section>
 

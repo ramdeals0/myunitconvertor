@@ -14,9 +14,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "My Unit Convertor — Professional Unit Converter & Engineering Tools" },
+      { title: "Unit Convertor — Professional Unit Converter & Engineering Tools" },
       { name: "description", content: "Convert length, weight, temperature, volume, and dozens more — instantly and accurately, with engineering-grade precision." },
-      { property: "og:title", content: "My Unit Convertor — Professional Unit Converter & Engineering Tools" },
+      { property: "og:title", content: "Unit Convertor — Professional Unit Converter & Engineering Tools" },
       { property: "og:description", content: "A clean, fast, modern unit converter for every category you need." },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -57,9 +57,9 @@ const FEATURES = [
 
 const FAQS = [
   { q: "How accurate is the conversion?",
-    a: "My Unit Convertor uses double-precision floating-point arithmetic and NIST-verified conversion factors. We support up to 12 decimal places of precision for critical technical tasks." },
+    a: "Unit Convertor uses double-precision floating-point arithmetic and NIST-verified conversion factors. We support up to 12 decimal places of precision for critical technical tasks." },
   { q: "Is this tool free to use?",
-    a: "Yes, My Unit Convertor is 100% free for students and professional engineers. We sustain the platform through minimal, non-intrusive advertisements." },
+    a: "Yes, Unit Convertor is 100% free for students and professional engineers. We sustain the platform through minimal, non-intrusive advertisements." },
   { q: "Does it work offline?",
     a: "Initial loading needs a connection, but once the page is open the conversion logic runs entirely in your browser." },
   { q: "Can I suggest a new unit?",
@@ -151,7 +151,7 @@ function HomePage() {
 
       {/* Why choose */}
       <section className="mb-16">
-        <SectionHeader title="Why Choose My Unit Convertor?" subtitle="Built for engineers, students, and anyone who needs answers they can trust." centered />
+        <SectionHeader title="Why Choose Unit Convertor?" subtitle="Built for engineers, students, and anyone who needs answers they can trust." centered />
         <div className="grid md:grid-cols-3 gap-5">
           {FEATURES.map(({ icon: Icon, title, text }) => (
             <div key={title} className="bg-surface-elevated border border-border rounded-2xl p-6 hover:border-primary/40 hover:shadow-[var(--shadow-card)] transition">
@@ -229,7 +229,7 @@ function HomePage() {
 
       {/* FAQ */}
       <section>
-        <SectionHeader title="Frequently Asked Questions" subtitle="Answers to common questions about My Unit Convertor." centered />
+        <SectionHeader title="Frequently Asked Questions" subtitle="Answers to common questions about Unit Convertor." centered />
         <div className="max-w-3xl mx-auto space-y-3">
           {FAQS.map((f) => (
             <details key={f.q} className="group bg-surface-elevated border border-border rounded-xl p-5 open:shadow-[var(--shadow-card)] transition">

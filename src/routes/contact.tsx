@@ -4,14 +4,14 @@ import { Mail, MessageSquare } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — My Unit Convertor" },
-      { name: "description", content: "Get in touch with the My Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
-      { property: "og:title", content: "Contact Us — My Unit Convertor" },
-      { property: "og:description", content: "Get in touch with the My Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { title: "Contact Us — Unit Convertor" },
+      { name: "description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { property: "og:title", content: "Contact Us — Unit Convertor" },
+      { property: "og:description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://myunitconvertor.lovable.app/contact" },
-      { name: "twitter:title", content: "Contact Us — My Unit Convertor" },
-      { name: "twitter:description", content: "Get in touch with the My Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
+      { name: "twitter:title", content: "Contact Us — Unit Convertor" },
+      { name: "twitter:description", content: "Get in touch with the Unit Convertor team. Contact us via email at ramdeals0@gmail.com for questions, feedback, or suggestions." },
     ],
     links: [
       { rel: "canonical", href: "https://myunitconvertor.lovable.app/contact" },
@@ -31,7 +31,7 @@ function ContactPage() {
             Get in Touch
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            Contact My Unit Convertor
+            Contact Unit Convertor
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
             Have a question, suggestion, or found an issue? We would love to hear from you.

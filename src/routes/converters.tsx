@@ -19,9 +19,9 @@ import {
 export const Route = createFileRoute("/converters")({
   head: () => ({
     meta: [
-      { title: "All Converters — My Unit Convertor" },
+      { title: "All Converters — Unit Convertor" },
       { name: "description", content: "Browse our complete directory of professional-grade conversion tools, organized by scientific and engineering disciplines." },
-      { property: "og:title", content: "All Converters — My Unit Convertor" },
+      { property: "og:title", content: "All Converters — Unit Convertor" },
       { property: "og:description", content: "Browse every unit converter category." },
     ],
     links: [{ rel: "canonical", href: "https://myunitconvertor.lovable.app/converters" }],
