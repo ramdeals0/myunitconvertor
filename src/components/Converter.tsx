@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeftRight, Copy, Check, ChevronsUpDown } from "lucide-react";
+import { ArrowLeftRight, Copy, Check, ChevronsUpDown, Share2, Link2 } from "lucide-react";
 import { Category } from "@/lib/converters/types";
 import { convert, formatResult } from "@/lib/converters/data";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -12,7 +12,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 
-
 interface Props {
   category: Category;
   initialFrom?: string;
@@ -24,7 +23,8 @@ export function Converter({ category, initialFrom, initialTo, compact }: Props) 
   const [from, setFrom] = useState(initialFrom ?? category.units[0].id);
   const [to, setTo] = useState(initialTo ?? category.units[1]?.id ?? category.units[0].id);
   const [input, setInput] = useState("1");
-  const [copied, setCopied] = useState(false);
+  const [copiedResult, setCopiedResult] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   useEffect(() => {
     setFrom(initialFrom ?? category.units[0].id);
@@ -43,12 +43,22 @@ export function Converter({ category, initialFrom, initialTo, compact }: Props) 
     if (result) setInput(result);
   };
 
-  const copy = async () => {
+  const copyResult = async () => {
     if (!result) return;
     await navigator.clipboard.writeText(result);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setCopiedResult(true);
+    setTimeout(() => setCopiedResult(false), 1500);
   };
+
+  const shareUrl = async () => {
+    const url = `${window.location.origin}/c/${category.id}/${from}-to-${to}`;
+    await navigator.clipboard.writeText(url);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 1500);
+  };
+
+  const fromUnit = category.units.find((u) => u.id === from);
+  const toUnit = category.units.find((u) => u.id === to);
 
   return (
     <div className={`bg-surface-elevated rounded-2xl border border-border shadow-[var(--shadow-card)] ${compact ? "p-6" : "p-8 md:p-12"}`}>
@@ -90,17 +100,33 @@ export function Converter({ category, initialFrom, initialTo, compact }: Props) 
           onUnitChange={setTo}
           category={category}
           readOnly
-          trailing={
-            <button
-              onClick={copy}
-              aria-label="Copy result"
-              className="text-muted-foreground hover:text-primary p-1 transition"
-            >
-              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-            </button>
-          }
         />
       </div>
+
+      {result && (
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={copyResult}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground hover:border-primary hover:text-primary transition"
+          >
+            {copiedResult ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+            {copiedResult ? "Copied result" : "Copy result"}
+          </button>
+          <button
+            onClick={shareUrl}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground hover:border-primary hover:text-primary transition"
+          >
+            {copiedLink ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+            {copiedLink ? "Link copied" : "Share link"}
+          </button>
+        </div>
+      )}
+
+      {fromUnit && toUnit && result && (
+        <div className="mt-4 text-center text-xs text-muted-foreground">
+          {input} {fromUnit.name} = {result} {toUnit.name}
+        </div>
+      )}
     </div>
   );
 }
