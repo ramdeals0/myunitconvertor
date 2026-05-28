@@ -45,12 +45,6 @@ const COMMON_CONVERSIONS = [
   ["speed", "mph", "kph"], ["power", "kW", "hp"],
 ] as const;
 
-const TRUST_SIGNALS = [
-  { icon: Building2, label: "STEM", sub: "Architecture" },
-  { icon: GraduationCap, label: "EDU", sub: "Education" },
-  { icon: Cpu, label: "TECH", sub: "Engineering" },
-  { icon: FlaskConical, label: "LABS", sub: "Science" },
-];
 
 const FEATURES = [
   { icon: BadgeCheck, title: "Engineering-Grade Precision",
