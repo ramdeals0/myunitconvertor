@@ -9,6 +9,7 @@ import {
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
 import { I18nProvider } from "@/lib/i18n";
+import { AdBanner } from "@/components/AdBanner";
 
 import appCss from "../styles.css?url";
 
@@ -134,6 +135,9 @@ function RootComponent() {
           <main className="flex-1">
             <Outlet />
           </main>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 w-full">
+            <AdBanner className="mt-10" />
+          </div>
           <SiteFooter />
         </div>
         <ScientificCalculator />
