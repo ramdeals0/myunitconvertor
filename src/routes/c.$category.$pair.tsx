@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Converter } from "@/components/Converter";
+import { AdBanner } from "@/components/AdBanner";
 import { CATEGORY_MAP, convert, formatResult } from "@/lib/converters/data";
 import type { Category, Unit } from "@/lib/converters/types";
 
@@ -89,6 +90,8 @@ function PairPage() {
       </div>
 
       <Converter category={category} initialFrom={from} initialTo={to} />
+
+      <AdBanner className="mt-10" />
 
       <section className="mt-12 grid md:grid-cols-2 gap-6">
         <div className="bg-surface-elevated border border-border rounded-xl p-6">
