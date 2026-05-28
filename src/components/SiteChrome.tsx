@@ -9,6 +9,7 @@ const NAV = [
   { to: "/c/temperature", label: "Temperature" },
   { to: "/c/volume", label: "Volume" },
   { to: "/converters", label: "All Converters" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
