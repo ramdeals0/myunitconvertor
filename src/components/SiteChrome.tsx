@@ -9,7 +9,6 @@ const NAV = [
   { to: "/c/temperature", label: "Temperature" },
   { to: "/c/volume", label: "Volume" },
   { to: "/converters", label: "All Converters" },
-  { to: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -90,6 +89,8 @@ export function SiteFooter() {
           </div>
           <div className="flex items-center gap-4">
             <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
+            <span className="text-border">|</span>
+            <Link to="/contact" className="hover:text-foreground transition-colors">Contact Us</Link>
             <span className="text-border">|</span>
             <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <span className="text-border">|</span>
