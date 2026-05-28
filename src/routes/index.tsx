@@ -45,12 +45,6 @@ const COMMON_CONVERSIONS = [
   ["speed", "mph", "kph"], ["power", "kW", "hp"],
 ] as const;
 
-const TRUST_SIGNALS = [
-  { icon: Building2, label: "STEM", sub: "Architecture" },
-  { icon: GraduationCap, label: "EDU", sub: "Education" },
-  { icon: Cpu, label: "TECH", sub: "Engineering" },
-  { icon: FlaskConical, label: "LABS", sub: "Science" },
-];
 
 const FEATURES = [
   { icon: BadgeCheck, title: "Engineering-Grade Precision",
@@ -100,22 +94,6 @@ function HomePage() {
           <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
             A clean, fast, modern unit converter for every category you need. Precision-engineered for students, engineers, and travelers.
           </p>
-        </div>
-
-        {/* Trust signals */}
-        <div className="mb-10">
-          <div className="text-center text-[11px] font-bold tracking-[0.18em] uppercase text-muted-foreground mb-4">
-            Trusted by Engineers and Students Worldwide
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
-            {TRUST_SIGNALS.map(({ icon: Icon, label, sub }) => (
-              <div key={label} className="flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-2">
-                <Icon className="h-4 w-4 text-primary" />
-                <span className="text-xs font-bold tracking-wider">{label}</span>
-                <span className="text-xs text-muted-foreground hidden sm:inline">· {sub}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Category quick chips */}
