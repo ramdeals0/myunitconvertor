@@ -83,12 +83,21 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-border mt-20 bg-surface-elevated">
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 text-sm text-muted-foreground flex flex-col md:flex-row items-center justify-between gap-3">
-        <div>
-          <span className="font-semibold text-foreground">UnitPrecise</span> — Professional unit conversion &amp; technical tools.
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <div>
+            <span className="font-semibold text-foreground">UnitPrecise</span> — Professional unit conversion &amp; technical tools.
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
+            <span className="text-border">|</span>
+            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <span className="text-border">|</span>
+            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+          </div>
         </div>
-        <div className="flex flex-col md:items-end gap-1">
-          <div>© {new Date().getFullYear()} UnitPrecise. Engineered for accuracy.</div>
+        <div className="mt-4 text-center md:text-right text-xs text-muted-foreground">
+          © {new Date().getFullYear()} UnitPrecise. Engineered for accuracy.
         </div>
       </div>
     </footer>
