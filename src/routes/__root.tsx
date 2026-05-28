@@ -9,6 +9,7 @@ import {
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
 import { I18nProvider } from "@/lib/i18n";
+import { AdBanner } from "@/components/AdBanner";
 
 import appCss from "../styles.css?url";
 
