@@ -1,20 +1,24 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/c/length", label: "Length" },
-  { to: "/c/weight", label: "Weight" },
-  { to: "/c/temperature", label: "Temperature" },
-  { to: "/c/volume", label: "Volume" },
-  { to: "/converters", label: "All Converters" },
-];
+import { Moon, Sun, Menu, X, Globe } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useI18n, LANGUAGES, Lang } from "@/lib/i18n";
 
 export function SiteHeader() {
   const [dark, setDark] = useState(false);
   const [open, setOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const { lang, setLang, t } = useI18n();
+
+  const NAV = [
+    { to: "/", label: t("nav.home") },
+    { to: "/c/length", label: t("nav.length") },
+    { to: "/c/weight", label: t("nav.weight") },
+    { to: "/c/temperature", label: t("nav.temperature") },
+    { to: "/c/volume", label: t("nav.volume") },
+    { to: "/converters", label: t("nav.all") },
+  ];
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -23,12 +27,22 @@ export function SiteHeader() {
     document.documentElement.classList.toggle("dark", prefersDark);
   }, []);
 
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
   const toggle = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
   };
+
+  const currentLang = LANGUAGES.find((l) => l.code === lang)!;
 
   return (
     <header className="bg-surface-elevated/80 backdrop-blur-md border-b border-border fixed top-0 inset-x-0 z-50">
@@ -53,10 +67,37 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="flex items-center gap-1">
-          <button onClick={toggle} className="p-2 rounded-full hover:bg-muted transition" aria-label="Toggle theme">
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen((v) => !v)}
+              className="flex items-center gap-1.5 p-2 rounded-full hover:bg-muted transition text-foreground"
+              aria-label={t("nav.language")}
+              aria-expanded={langOpen}
+            >
+              <Globe className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold uppercase">{currentLang.code}</span>
+            </button>
+            {langOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-surface-elevated border border-border rounded-xl shadow-[var(--shadow-card)] py-1 z-50">
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLang(l.code as Lang); setLangOpen(false); }}
+                    className={`w-full text-left px-3 py-2 text-sm hover:bg-muted transition flex items-center justify-between ${
+                      l.code === lang ? "text-primary font-semibold" : "text-foreground"
+                    }`}
+                  >
+                    <span>{l.native}</span>
+                    <span className="text-xs text-muted-foreground uppercase">{l.code}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button onClick={toggle} className="p-2 rounded-full hover:bg-muted transition" aria-label={t("nav.toggleTheme")}>
             {dark ? <Sun className="h-5 w-5 text-primary" /> : <Moon className="h-5 w-5 text-primary" />}
           </button>
-          <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label="Menu">
+          <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label={t("nav.menu")}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -80,25 +121,26 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const { t } = useI18n();
   return (
     <footer className="border-t border-border mt-20 bg-surface-elevated">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div>
-            <span className="font-semibold text-foreground">Unit Convertor</span> — Professional unit conversion &amp; technical tools.
+            <span className="font-semibold text-foreground">Unit Convertor</span> — {t("footer.tagline")}
           </div>
           <div className="flex items-center gap-4">
-            <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
+            <Link to="/about" className="hover:text-foreground transition-colors">{t("footer.about")}</Link>
             <span className="text-border">|</span>
-            <Link to="/contact" className="hover:text-foreground transition-colors">Contact Us</Link>
+            <Link to="/contact" className="hover:text-foreground transition-colors">{t("footer.contact")}</Link>
             <span className="text-border">|</span>
-            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/privacy" className="hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
             <span className="text-border">|</span>
-            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors">{t("footer.terms")}</Link>
           </div>
         </div>
         <div className="mt-4 text-center md:text-right text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Unit Convertor. Engineered for accuracy.
+          © {new Date().getFullYear()} Unit Convertor. {t("footer.rights")}
         </div>
       </div>
     </footer>

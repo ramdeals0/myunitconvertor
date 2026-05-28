@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { ScientificCalculator } from "@/components/ScientificCalculator";
+import { I18nProvider } from "@/lib/i18n";
 
 import appCss from "../styles.css?url";
 
@@ -127,14 +128,16 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteHeader />
-      <div className="pt-16 min-h-screen flex flex-col">
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
-      <ScientificCalculator />
+      <I18nProvider>
+        <SiteHeader />
+        <div className="pt-16 min-h-screen flex flex-col">
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <SiteFooter />
+        </div>
+        <ScientificCalculator />
+      </I18nProvider>
     </QueryClientProvider>
   );
 }
