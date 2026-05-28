@@ -76,6 +76,15 @@ function CategoryPage() {
         <span className="text-foreground">{category.name}</span>
       </nav>
 
+      <header className="text-center mb-6">
+        <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+          {category.name} Converter
+        </h1>
+        <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+          {category.description}
+        </p>
+      </header>
+
       <Converter category={category} />
 
       {f && t && factor !== null && (
