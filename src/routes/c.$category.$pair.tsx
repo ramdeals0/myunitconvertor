@@ -20,6 +20,12 @@ export const Route = createFileRoute("/c/$category/$pair")({
     const factor = c && f && t ? convert(c, 1, f.id, t.id) : null;
     const scripts: Array<{ type: string; children: string }> = [];
     if (c && f && t && factor !== null) {
+      const faqs = [
+        { q: `How do I convert ${f.name.toLowerCase()} to ${t.name.toLowerCase()}?`, a: `Multiply the ${f.name.toLowerCase()} value by ${formatResult(factor)} to get the result in ${t.name.toLowerCase()}.` },
+        { q: `What is 1 ${f.name.toLowerCase()} in ${t.name.toLowerCase()}?`, a: `1 ${f.symbol} equals ${formatResult(factor)} ${t.symbol}.` },
+        { q: "How precise is this tool?", a: "We use 12-digit precision constants aligned with international metrology standards." },
+        { q: "Is it free to use?", a: "Yes — the web converter is completely free for personal and professional use." },
+      ];
       scripts.push({
         type: "application/ld+json",
         children: JSON.stringify({
@@ -44,6 +50,18 @@ export const Route = createFileRoute("/c/$category/$pair")({
             { "@type": "ListItem", position: 2, name: c.name, item: catUrl },
             { "@type": "ListItem", position: 3, name: `${f.name} to ${t.name}`, item: url },
           ],
+        }),
+      });
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((q) => ({
+            "@type": "Question",
+            name: q.q,
+            acceptedAnswer: { "@type": "Answer", text: q.a },
+          })),
         }),
       });
     }
@@ -84,6 +102,25 @@ function PairPage() {
   const t = category.units.find((u) => u.id === to)!;
 
   const examples = [1, 2, 5, 10, 25, 50, 100, 250, 500, 1000];
+  const factor = convert(category, 1, from, to);
+  const faqs = [
+    {
+      q: `How do I convert ${f.name.toLowerCase()} to ${t.name.toLowerCase()}?`,
+      a: `Multiply the ${f.name.toLowerCase()} value by ${formatResult(factor)} to get the equivalent in ${t.name.toLowerCase()}.`,
+    },
+    {
+      q: `What is 1 ${f.name.toLowerCase()} in ${t.name.toLowerCase()}?`,
+      a: `1 ${f.symbol} equals ${formatResult(factor)} ${t.symbol}.`,
+    },
+    {
+      q: "How precise is this tool?",
+      a: "We use 12-digit precision constants aligned with international metrology standards.",
+    },
+    {
+      q: "Is it free to use?",
+      a: "Yes — the web converter is completely free for personal and professional use.",
+    },
+  ];
 
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
@@ -106,9 +143,58 @@ function PairPage() {
 
       <Converter category={category} initialFrom={from} initialTo={to} />
 
+      <div className="mt-6 bg-primary-soft border border-primary/15 rounded-xl p-5 text-center">
+        <div className="text-[11px] uppercase tracking-[0.08em] font-semibold text-primary/80">
+          Resulting Conversion
+        </div>
+        <div className="mt-1 font-mono-num text-xl md:text-2xl font-semibold text-foreground">
+          1 {f.symbol} = <span className="text-primary">{formatResult(factor)}</span> {t.symbol}
+        </div>
+        <div className="text-xs text-muted-foreground mt-1">
+          Calculated with engineering-grade precision.
+        </div>
+      </div>
+
       <AdBanner className="mt-10" />
 
       <section className="mt-12 grid md:grid-cols-2 gap-6">
+        <div className="bg-surface-elevated border border-border rounded-xl p-6 shadow-[var(--shadow-card)]">
+          <h2 className="text-lg font-semibold mb-3">
+            How to convert {f.name.toLowerCase()} to {t.name.toLowerCase()}
+          </h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            To convert {f.name.toLowerCase()} to {t.name.toLowerCase()}, multiply
+            the {f.name.toLowerCase()} value by the conversion factor{" "}
+            <span className="font-mono-num text-foreground font-semibold">{formatResult(factor)}</span>.
+          </p>
+          <div className="mt-4 rounded-lg border border-dashed border-border bg-muted/30 p-4 font-mono-num text-sm">
+            {t.name} = {f.name} × {formatResult(factor)}
+          </div>
+          <div className="mt-4 text-sm">
+            <div className="text-muted-foreground">Reference:</div>
+            <div className="font-mono-num mt-1">
+              1 {f.symbol} = <span className="text-primary font-semibold">{formatResult(factor)}</span> {t.symbol}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-surface-elevated border border-border rounded-xl p-6 shadow-[var(--shadow-card)]">
+          <h2 className="text-lg font-semibold mb-4">Frequently asked questions</h2>
+          <div className="divide-y divide-border">
+            {faqs.map((item) => (
+              <details key={item.q} className="group py-3">
+                <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold">
+                  {item.q}
+                  <span className="text-primary group-open:rotate-45 transition-transform text-lg leading-none">+</span>
+                </summary>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-12">
         <div className="bg-surface-elevated border border-border rounded-xl p-6">
           <h2 className="font-semibold mb-3">Conversion table</h2>
           <table className="w-full text-sm">
@@ -123,19 +209,6 @@ function PairPage() {
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="bg-surface-elevated border border-border rounded-xl p-6">
-          <h2 className="font-semibold mb-3">About this conversion</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            This converter transforms values from <strong className="text-foreground">{f.name}</strong> ({f.symbol}) into <strong className="text-foreground">{t.name}</strong> ({t.symbol}).
-            Calculations use double-precision math with adaptive rounding for clarity at both very small and very large magnitudes.
-          </p>
-          <div className="mt-4 text-sm">
-            <div className="text-muted-foreground">Reference:</div>
-            <div className="font-mono-num mt-1">
-              1 {f.symbol} = <span className="text-primary font-semibold">{formatResult(convert(category, 1, from, to))}</span> {t.symbol}
-            </div>
-          </div>
         </div>
       </section>
     </div>
